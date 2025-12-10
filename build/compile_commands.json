@@ -1,0 +1,254 @@
+[
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lapi.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lapi.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lapi.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lapi.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lauxlib.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lauxlib.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lauxlib.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lauxlib.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lbaselib.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lbaselib.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lbaselib.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lbaselib.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lcode.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lcode.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lcode.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lcode.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lcorolib.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lcorolib.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lcorolib.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lcorolib.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lctype.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lctype.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lctype.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lctype.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/ldblib.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ldblib.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ldblib.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/ldblib.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/ldebug.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ldebug.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ldebug.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/ldebug.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/ldo.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ldo.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ldo.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/ldo.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/ldump.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ldump.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ldump.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/ldump.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lfunc.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lfunc.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lfunc.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lfunc.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lgc.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lgc.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lgc.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lgc.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/linit.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/linit.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/linit.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/linit.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/liolib.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/liolib.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/liolib.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/liolib.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/llex.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/llex.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/llex.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/llex.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lmathlib.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lmathlib.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lmathlib.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lmathlib.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lmem.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lmem.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lmem.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lmem.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/loadlib.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/loadlib.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/loadlib.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/loadlib.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lobject.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lobject.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lobject.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lobject.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lopcodes.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lopcodes.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lopcodes.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lopcodes.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/loslib.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/loslib.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/loslib.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/loslib.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lparser.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lparser.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lparser.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lparser.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lstate.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lstate.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lstate.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lstate.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lstring.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lstring.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lstring.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lstring.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lstrlib.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lstrlib.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lstrlib.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lstrlib.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/ltable.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ltable.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ltable.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/ltable.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/ltablib.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ltablib.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ltablib.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/ltablib.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/ltm.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ltm.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/ltm.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/ltm.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lundump.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lundump.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lundump.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lundump.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lutf8lib.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lutf8lib.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lutf8lib.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lutf8lib.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lvm.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lvm.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lvm.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lvm.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/cc -DLUA_USE_MACOSX -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -g -arch arm64 -o CMakeFiles/lua.dir/lib/lua-5.4/lzio.c.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lzio.c",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lzio.c",
+  "output": "CMakeFiles/lua.dir/lib/lua-5.4/lzio.c.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/main.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/main.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/main.cpp",
+  "output": "CMakeFiles/terram.dir/src/main.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/core/Application.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Application.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Application.cpp",
+  "output": "CMakeFiles/terram.dir/src/core/Application.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/core/Window.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Window.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Window.cpp",
+  "output": "CMakeFiles/terram.dir/src/core/Window.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.cpp",
+  "output": "CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/graphics/Texture.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Texture.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Texture.cpp",
+  "output": "CMakeFiles/terram.dir/src/graphics/Texture.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/input/Input.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/input/Input.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/input/Input.cpp",
+  "output": "CMakeFiles/terram.dir/src/input/Input.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaState.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaState.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaState.cpp",
+  "output": "CMakeFiles/terram.dir/src/lua/LuaState.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaGraphics.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaGraphics.cpp",
+  "output": "CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaWindow.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaWindow.cpp",
+  "output": "CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaInput.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaInput.cpp",
+  "output": "CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o"
+}
+]
