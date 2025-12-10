@@ -934,6 +934,30 @@ src/core/Application.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/core/Application.cpp.s
 .PHONY : src/core/Application.cpp.s
 
+src/core/MemoryTracker.o: src/core/MemoryTracker.cpp.o
+.PHONY : src/core/MemoryTracker.o
+
+# target to build an object file
+src/core/MemoryTracker.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o
+.PHONY : src/core/MemoryTracker.cpp.o
+
+src/core/MemoryTracker.i: src/core/MemoryTracker.cpp.i
+.PHONY : src/core/MemoryTracker.i
+
+# target to preprocess a source file
+src/core/MemoryTracker.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.i
+.PHONY : src/core/MemoryTracker.cpp.i
+
+src/core/MemoryTracker.s: src/core/MemoryTracker.cpp.s
+.PHONY : src/core/MemoryTracker.s
+
+# target to generate assembly for a file
+src/core/MemoryTracker.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.s
+.PHONY : src/core/MemoryTracker.cpp.s
+
 src/core/Window.o: src/core/Window.cpp.o
 .PHONY : src/core/Window.o
 
@@ -1259,6 +1283,9 @@ help:
 	@echo "... src/core/Application.o"
 	@echo "... src/core/Application.i"
 	@echo "... src/core/Application.s"
+	@echo "... src/core/MemoryTracker.o"
+	@echo "... src/core/MemoryTracker.i"
+	@echo "... src/core/MemoryTracker.s"
 	@echo "... src/core/Window.o"
 	@echo "... src/core/Window.i"
 	@echo "... src/core/Window.s"

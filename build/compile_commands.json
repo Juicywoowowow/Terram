@@ -211,6 +211,12 @@
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/MemoryTracker.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/core/MemoryTracker.cpp",
+  "output": "CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
   "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.cpp",
   "output": "CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o"

@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Application.cpp" "CMakeFiles/terram.dir/src/core/Application.cpp.o" "gcc" "CMakeFiles/terram.dir/src/core/Application.cpp.o.d"
+  "/Users/alexanderbrianttadiosa/claude-master/Terram/src/core/MemoryTracker.cpp" "CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o" "gcc" "CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o.d"
   "/Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Window.cpp" "CMakeFiles/terram.dir/src/core/Window.cpp.o" "gcc" "CMakeFiles/terram.dir/src/core/Window.cpp.o.d"
   "/Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.cpp" "CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o" "gcc" "CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o.d"
   "/Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Texture.cpp" "CMakeFiles/terram.dir/src/graphics/Texture.cpp.o" "gcc" "CMakeFiles/terram.dir/src/graphics/Texture.cpp.o.d"

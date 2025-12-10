@@ -38,6 +38,7 @@ set(TERRAM_SOURCES
     src/main.cpp
     src/core/Application.cpp
     src/core/Window.cpp
+    src/core/MemoryTracker.cpp
     src/graphics/Renderer.cpp
     src/graphics/Texture.cpp
     src/input/Input.cpp

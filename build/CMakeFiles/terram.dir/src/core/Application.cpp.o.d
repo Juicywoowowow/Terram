@@ -751,6 +751,7 @@ CMakeFiles/terram.dir/src/core/Application.cpp.o: \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_version.h \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_locale.h \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_misc.h \
+  /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/MemoryTracker.hpp \
   /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.hpp \
   /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Color.hpp \
   /Users/alexanderbrianttadiosa/claude-master/Terram/src/input/Input.hpp \

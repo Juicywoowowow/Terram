@@ -1,5 +1,6 @@
 #include "Application.hpp"
 #include "Window.hpp"
+#include "MemoryTracker.hpp"
 #include "graphics/Renderer.hpp"
 #include "input/Input.hpp"
 #include "lua/LuaState.hpp"
@@ -16,11 +17,13 @@ Application::Application() {
 }
 
 Application::~Application() {
+    std::cout << "\n\033[1m[Terram] Shutting down...\033[0m\n" << std::endl;
     m_lua.reset();
     m_renderer.reset();
     m_input.reset();
     m_window.reset();
     SDL_Quit();
+    MemoryTracker::logStats();
     s_instance = nullptr;
 }
 
@@ -29,6 +32,13 @@ Application& Application::getInstance() {
 }
 
 bool Application::init(const std::string& gamePath) {
+    // Startup banner
+    std::cout << "\n\033[1;36m╔══════════════════════════════════════════════════════╗\033[0m" << std::endl;
+    std::cout << "\033[1;36m║\033[0m   \033[1;33mTERRAM ENGINE\033[0m v0.1.0                              \033[1;36m║\033[0m" << std::endl;
+    std::cout << "\033[1;36m║\033[0m   Memory tracking: \033[32mENABLED\033[0m                          \033[1;36m║\033[0m" << std::endl;
+    std::cout << "\033[1;36m╚══════════════════════════════════════════════════════╝\033[0m\n" << std::endl;
+    std::cout << "\033[1m[Memory Tracker] Monitoring allocations...\033[0m\n" << std::endl;
+
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0) {
         std::cerr << "Failed to initialize SDL: " << SDL_GetError() << std::endl;

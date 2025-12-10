@@ -114,10 +114,24 @@ CMakeFiles/terram.dir/src/core/Window.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/terram.dir/src/core/Window.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Window.cpp -o CMakeFiles/terram.dir/src/core/Window.cpp.s
 
+CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o: CMakeFiles/terram.dir/flags.make
+CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o: /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/MemoryTracker.cpp
+CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o: CMakeFiles/terram.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o -MF CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o.d -o CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/MemoryTracker.cpp
+
+CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/MemoryTracker.cpp > CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.i
+
+CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/MemoryTracker.cpp -o CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.s
+
 CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o: CMakeFiles/terram.dir/flags.make
 CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o: /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.cpp
 CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o: CMakeFiles/terram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o -MF CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o.d -o CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.cpp
 
 CMakeFiles/terram.dir/src/graphics/Renderer.cpp.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/terram.dir/src/graphics/Renderer.cpp.s: cmake_force
 CMakeFiles/terram.dir/src/graphics/Texture.cpp.o: CMakeFiles/terram.dir/flags.make
 CMakeFiles/terram.dir/src/graphics/Texture.cpp.o: /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Texture.cpp
 CMakeFiles/terram.dir/src/graphics/Texture.cpp.o: CMakeFiles/terram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/terram.dir/src/graphics/Texture.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/terram.dir/src/graphics/Texture.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/terram.dir/src/graphics/Texture.cpp.o -MF CMakeFiles/terram.dir/src/graphics/Texture.cpp.o.d -o CMakeFiles/terram.dir/src/graphics/Texture.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Texture.cpp
 
 CMakeFiles/terram.dir/src/graphics/Texture.cpp.i: cmake_force
@@ -145,7 +159,7 @@ CMakeFiles/terram.dir/src/graphics/Texture.cpp.s: cmake_force
 CMakeFiles/terram.dir/src/input/Input.cpp.o: CMakeFiles/terram.dir/flags.make
 CMakeFiles/terram.dir/src/input/Input.cpp.o: /Users/alexanderbrianttadiosa/claude-master/Terram/src/input/Input.cpp
 CMakeFiles/terram.dir/src/input/Input.cpp.o: CMakeFiles/terram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/terram.dir/src/input/Input.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/terram.dir/src/input/Input.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/terram.dir/src/input/Input.cpp.o -MF CMakeFiles/terram.dir/src/input/Input.cpp.o.d -o CMakeFiles/terram.dir/src/input/Input.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/input/Input.cpp
 
 CMakeFiles/terram.dir/src/input/Input.cpp.i: cmake_force
@@ -159,7 +173,7 @@ CMakeFiles/terram.dir/src/input/Input.cpp.s: cmake_force
 CMakeFiles/terram.dir/src/lua/LuaState.cpp.o: CMakeFiles/terram.dir/flags.make
 CMakeFiles/terram.dir/src/lua/LuaState.cpp.o: /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaState.cpp
 CMakeFiles/terram.dir/src/lua/LuaState.cpp.o: CMakeFiles/terram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/terram.dir/src/lua/LuaState.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/terram.dir/src/lua/LuaState.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/terram.dir/src/lua/LuaState.cpp.o -MF CMakeFiles/terram.dir/src/lua/LuaState.cpp.o.d -o CMakeFiles/terram.dir/src/lua/LuaState.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaState.cpp
 
 CMakeFiles/terram.dir/src/lua/LuaState.cpp.i: cmake_force
@@ -173,7 +187,7 @@ CMakeFiles/terram.dir/src/lua/LuaState.cpp.s: cmake_force
 CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o: CMakeFiles/terram.dir/flags.make
 CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o: /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaGraphics.cpp
 CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o: CMakeFiles/terram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o -MF CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o.d -o CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaGraphics.cpp
 
 CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.i: cmake_force
@@ -187,7 +201,7 @@ CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.s: cmake_force
 CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o: CMakeFiles/terram.dir/flags.make
 CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o: /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaWindow.cpp
 CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o: CMakeFiles/terram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o -MF CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o.d -o CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaWindow.cpp
 
 CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.i: cmake_force
@@ -201,7 +215,7 @@ CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.s: cmake_force
 CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o: CMakeFiles/terram.dir/flags.make
 CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o: /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaInput.cpp
 CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o: CMakeFiles/terram.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o -MF CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o.d -o CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaInput.cpp
 
 CMakeFiles/terram.dir/src/lua/LuaInput.cpp.i: cmake_force
@@ -217,6 +231,7 @@ terram_OBJECTS = \
 "CMakeFiles/terram.dir/src/main.cpp.o" \
 "CMakeFiles/terram.dir/src/core/Application.cpp.o" \
 "CMakeFiles/terram.dir/src/core/Window.cpp.o" \
+"CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o" \
 "CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o" \
 "CMakeFiles/terram.dir/src/graphics/Texture.cpp.o" \
 "CMakeFiles/terram.dir/src/input/Input.cpp.o" \
@@ -231,6 +246,7 @@ terram_EXTERNAL_OBJECTS =
 terram: CMakeFiles/terram.dir/src/main.cpp.o
 terram: CMakeFiles/terram.dir/src/core/Application.cpp.o
 terram: CMakeFiles/terram.dir/src/core/Window.cpp.o
+terram: CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o
 terram: CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o
 terram: CMakeFiles/terram.dir/src/graphics/Texture.cpp.o
 terram: CMakeFiles/terram.dir/src/input/Input.cpp.o
@@ -243,7 +259,7 @@ terram: liblua.a
 terram: /opt/homebrew/Cellar/sdl2/2.32.10/lib/libSDL2.dylib
 terram: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework
 terram: CMakeFiles/terram.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable terram"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable terram"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/terram.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
