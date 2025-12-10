@@ -2,6 +2,7 @@
 #include "core/Application.hpp"
 #include "graphics/Renderer.hpp"
 #include "graphics/Texture.hpp"
+#include "graphics/Font.hpp"
 
 extern "C" {
 #include <lua-5.4/lauxlib.h>
@@ -16,6 +17,11 @@ namespace terram {
 // Store textures with shared_ptr
 static std::unordered_map<int, std::shared_ptr<Texture>> s_textures;
 static int s_nextTextureId = 1;
+
+// Store fonts with shared_ptr
+static std::unordered_map<int, std::shared_ptr<Font>> s_fonts;
+static int s_nextFontId = 1;
+static std::shared_ptr<Font> s_currentFont = nullptr;
 
 void LuaGraphics::registerAPI(lua_State* L) {
     // Create graphics table
@@ -41,6 +47,16 @@ void LuaGraphics::registerAPI(lua_State* L) {
 
     lua_pushcfunction(L, draw);
     lua_setfield(L, -2, "draw");
+
+    // Font functions
+    lua_pushcfunction(L, newFont);
+    lua_setfield(L, -2, "newFont");
+
+    lua_pushcfunction(L, setFont);
+    lua_setfield(L, -2, "setFont");
+
+    lua_pushcfunction(L, print);
+    lua_setfield(L, -2, "print");
 
     // Set graphics as field of terram
     lua_setfield(L, -2, "graphics");
@@ -144,4 +160,57 @@ int LuaGraphics::draw(lua_State* L) {
     return 0;
 }
 
+int LuaGraphics::newFont(lua_State* L) {
+    const char* path = luaL_checkstring(L, 1);
+    float size = luaL_optnumber(L, 2, 16);
+
+    auto font = std::make_shared<Font>();
+    if (!font->load(path, size)) {
+        lua_pushnil(L);
+        return 1;
+    }
+
+    int id = s_nextFontId++;
+    s_fonts[id] = font;
+
+    // Create font table
+    lua_newtable(L);
+    lua_pushinteger(L, id);
+    lua_setfield(L, -2, "_fontId");
+    lua_pushnumber(L, size);
+    lua_setfield(L, -2, "size");
+
+    return 1;
+}
+
+int LuaGraphics::setFont(lua_State* L) {
+    luaL_checktype(L, 1, LUA_TTABLE);
+
+    lua_getfield(L, 1, "_fontId");
+    int id = lua_tointeger(L, -1);
+    lua_pop(L, 1);
+
+    auto it = s_fonts.find(id);
+    if (it == s_fonts.end()) {
+        return luaL_error(L, "Invalid font");
+    }
+
+    s_currentFont = it->second;
+    return 0;
+}
+
+int LuaGraphics::print(lua_State* L) {
+    const char* text = luaL_checkstring(L, 1);
+    float x = luaL_optnumber(L, 2, 0);
+    float y = luaL_optnumber(L, 3, 0);
+
+    if (!s_currentFont) {
+        return luaL_error(L, "No font set. Call terram.graphics.setFont() first.");
+    }
+
+    Application::getInstance().getRenderer().print(*s_currentFont, text, x, y);
+    return 0;
+}
+
 } // namespace terram
+

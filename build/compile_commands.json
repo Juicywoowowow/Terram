@@ -193,68 +193,98 @@
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
-  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/main.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/main.cpp",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/main.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/main.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/main.cpp",
   "output": "CMakeFiles/terram.dir/src/main.cpp.o"
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
-  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/core/Application.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Application.cpp",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/core/Application.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Application.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Application.cpp",
   "output": "CMakeFiles/terram.dir/src/core/Application.cpp.o"
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
-  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/core/Window.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Window.cpp",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/core/Window.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Window.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/core/Window.cpp",
   "output": "CMakeFiles/terram.dir/src/core/Window.cpp.o"
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
-  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/MemoryTracker.cpp",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/core/MemoryTracker.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/core/MemoryTracker.cpp",
   "output": "CMakeFiles/terram.dir/src/core/MemoryTracker.cpp.o"
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
-  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.cpp",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.cpp",
   "output": "CMakeFiles/terram.dir/src/graphics/Renderer.cpp.o"
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
-  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/graphics/Texture.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Texture.cpp",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/graphics/Texture.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Texture.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Texture.cpp",
   "output": "CMakeFiles/terram.dir/src/graphics/Texture.cpp.o"
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
-  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/input/Input.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/input/Input.cpp",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/graphics/Font.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Font.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Font.cpp",
+  "output": "CMakeFiles/terram.dir/src/graphics/Font.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/input/Input.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/input/Input.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/input/Input.cpp",
   "output": "CMakeFiles/terram.dir/src/input/Input.cpp.o"
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
-  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaState.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaState.cpp",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/physics/Physics.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/physics/Physics.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/physics/Physics.cpp",
+  "output": "CMakeFiles/terram.dir/src/physics/Physics.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/audio/Audio.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/audio/Audio.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/audio/Audio.cpp",
+  "output": "CMakeFiles/terram.dir/src/audio/Audio.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaState.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaState.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaState.cpp",
   "output": "CMakeFiles/terram.dir/src/lua/LuaState.cpp.o"
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
-  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaGraphics.cpp",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaGraphics.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaGraphics.cpp",
   "output": "CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o"
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
-  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaWindow.cpp",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaWindow.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaWindow.cpp",
   "output": "CMakeFiles/terram.dir/src/lua/LuaWindow.cpp.o"
 },
 {
   "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
-  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaInput.cpp",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaInput.cpp",
   "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaInput.cpp",
   "output": "CMakeFiles/terram.dir/src/lua/LuaInput.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaPhysics.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaPhysics.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaPhysics.cpp",
+  "output": "CMakeFiles/terram.dir/src/lua/LuaPhysics.cpp.o"
+},
+{
+  "directory": "/Users/alexanderbrianttadiosa/claude-master/Terram/build",
+  "command": "/usr/bin/c++  -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/terram.dir/src/lua/LuaAudio.cpp.o -c /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaAudio.cpp",
+  "file": "/Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaAudio.cpp",
+  "output": "CMakeFiles/terram.dir/src/lua/LuaAudio.cpp.o"
 }
 ]

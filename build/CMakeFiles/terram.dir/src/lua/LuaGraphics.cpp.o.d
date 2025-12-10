@@ -668,7 +668,7 @@ CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o: \
   /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Renderer.hpp \
   /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Color.hpp \
   /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Texture.hpp \
-  /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lauxlib.h \
+  /Users/alexanderbrianttadiosa/claude-master/Terram/src/graphics/Font.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/unordered_map \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/is_transparent.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__hash_table \
@@ -677,4 +677,5 @@ CMakeFiles/terram.dir/src/lua/LuaGraphics.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/erase_if_container.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/ranges_iterator_traits.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__node_handle \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/container_traits.h
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/container_traits.h \
+  /Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4/lauxlib.h

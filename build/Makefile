@@ -910,6 +910,30 @@ lib/lua-5.4/lzio.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lua.dir/build.make CMakeFiles/lua.dir/lib/lua-5.4/lzio.c.s
 .PHONY : lib/lua-5.4/lzio.c.s
 
+src/audio/Audio.o: src/audio/Audio.cpp.o
+.PHONY : src/audio/Audio.o
+
+# target to build an object file
+src/audio/Audio.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/audio/Audio.cpp.o
+.PHONY : src/audio/Audio.cpp.o
+
+src/audio/Audio.i: src/audio/Audio.cpp.i
+.PHONY : src/audio/Audio.i
+
+# target to preprocess a source file
+src/audio/Audio.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/audio/Audio.cpp.i
+.PHONY : src/audio/Audio.cpp.i
+
+src/audio/Audio.s: src/audio/Audio.cpp.s
+.PHONY : src/audio/Audio.s
+
+# target to generate assembly for a file
+src/audio/Audio.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/audio/Audio.cpp.s
+.PHONY : src/audio/Audio.cpp.s
+
 src/core/Application.o: src/core/Application.cpp.o
 .PHONY : src/core/Application.o
 
@@ -981,6 +1005,30 @@ src/core/Window.s: src/core/Window.cpp.s
 src/core/Window.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/core/Window.cpp.s
 .PHONY : src/core/Window.cpp.s
+
+src/graphics/Font.o: src/graphics/Font.cpp.o
+.PHONY : src/graphics/Font.o
+
+# target to build an object file
+src/graphics/Font.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/graphics/Font.cpp.o
+.PHONY : src/graphics/Font.cpp.o
+
+src/graphics/Font.i: src/graphics/Font.cpp.i
+.PHONY : src/graphics/Font.i
+
+# target to preprocess a source file
+src/graphics/Font.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/graphics/Font.cpp.i
+.PHONY : src/graphics/Font.cpp.i
+
+src/graphics/Font.s: src/graphics/Font.cpp.s
+.PHONY : src/graphics/Font.s
+
+# target to generate assembly for a file
+src/graphics/Font.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/graphics/Font.cpp.s
+.PHONY : src/graphics/Font.cpp.s
 
 src/graphics/Renderer.o: src/graphics/Renderer.cpp.o
 .PHONY : src/graphics/Renderer.o
@@ -1054,6 +1102,30 @@ src/input/Input.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/input/Input.cpp.s
 .PHONY : src/input/Input.cpp.s
 
+src/lua/LuaAudio.o: src/lua/LuaAudio.cpp.o
+.PHONY : src/lua/LuaAudio.o
+
+# target to build an object file
+src/lua/LuaAudio.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/lua/LuaAudio.cpp.o
+.PHONY : src/lua/LuaAudio.cpp.o
+
+src/lua/LuaAudio.i: src/lua/LuaAudio.cpp.i
+.PHONY : src/lua/LuaAudio.i
+
+# target to preprocess a source file
+src/lua/LuaAudio.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/lua/LuaAudio.cpp.i
+.PHONY : src/lua/LuaAudio.cpp.i
+
+src/lua/LuaAudio.s: src/lua/LuaAudio.cpp.s
+.PHONY : src/lua/LuaAudio.s
+
+# target to generate assembly for a file
+src/lua/LuaAudio.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/lua/LuaAudio.cpp.s
+.PHONY : src/lua/LuaAudio.cpp.s
+
 src/lua/LuaGraphics.o: src/lua/LuaGraphics.cpp.o
 .PHONY : src/lua/LuaGraphics.o
 
@@ -1101,6 +1173,30 @@ src/lua/LuaInput.s: src/lua/LuaInput.cpp.s
 src/lua/LuaInput.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/lua/LuaInput.cpp.s
 .PHONY : src/lua/LuaInput.cpp.s
+
+src/lua/LuaPhysics.o: src/lua/LuaPhysics.cpp.o
+.PHONY : src/lua/LuaPhysics.o
+
+# target to build an object file
+src/lua/LuaPhysics.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/lua/LuaPhysics.cpp.o
+.PHONY : src/lua/LuaPhysics.cpp.o
+
+src/lua/LuaPhysics.i: src/lua/LuaPhysics.cpp.i
+.PHONY : src/lua/LuaPhysics.i
+
+# target to preprocess a source file
+src/lua/LuaPhysics.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/lua/LuaPhysics.cpp.i
+.PHONY : src/lua/LuaPhysics.cpp.i
+
+src/lua/LuaPhysics.s: src/lua/LuaPhysics.cpp.s
+.PHONY : src/lua/LuaPhysics.s
+
+# target to generate assembly for a file
+src/lua/LuaPhysics.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/lua/LuaPhysics.cpp.s
+.PHONY : src/lua/LuaPhysics.cpp.s
 
 src/lua/LuaState.o: src/lua/LuaState.cpp.o
 .PHONY : src/lua/LuaState.o
@@ -1173,6 +1269,30 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/physics/Physics.o: src/physics/Physics.cpp.o
+.PHONY : src/physics/Physics.o
+
+# target to build an object file
+src/physics/Physics.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/physics/Physics.cpp.o
+.PHONY : src/physics/Physics.cpp.o
+
+src/physics/Physics.i: src/physics/Physics.cpp.i
+.PHONY : src/physics/Physics.i
+
+# target to preprocess a source file
+src/physics/Physics.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/physics/Physics.cpp.i
+.PHONY : src/physics/Physics.cpp.i
+
+src/physics/Physics.s: src/physics/Physics.cpp.s
+.PHONY : src/physics/Physics.s
+
+# target to generate assembly for a file
+src/physics/Physics.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/src/physics/Physics.cpp.s
+.PHONY : src/physics/Physics.cpp.s
 
 # Help Target
 help:
@@ -1280,6 +1400,9 @@ help:
 	@echo "... lib/lua-5.4/lzio.o"
 	@echo "... lib/lua-5.4/lzio.i"
 	@echo "... lib/lua-5.4/lzio.s"
+	@echo "... src/audio/Audio.o"
+	@echo "... src/audio/Audio.i"
+	@echo "... src/audio/Audio.s"
 	@echo "... src/core/Application.o"
 	@echo "... src/core/Application.i"
 	@echo "... src/core/Application.s"
@@ -1289,6 +1412,9 @@ help:
 	@echo "... src/core/Window.o"
 	@echo "... src/core/Window.i"
 	@echo "... src/core/Window.s"
+	@echo "... src/graphics/Font.o"
+	@echo "... src/graphics/Font.i"
+	@echo "... src/graphics/Font.s"
 	@echo "... src/graphics/Renderer.o"
 	@echo "... src/graphics/Renderer.i"
 	@echo "... src/graphics/Renderer.s"
@@ -1298,12 +1424,18 @@ help:
 	@echo "... src/input/Input.o"
 	@echo "... src/input/Input.i"
 	@echo "... src/input/Input.s"
+	@echo "... src/lua/LuaAudio.o"
+	@echo "... src/lua/LuaAudio.i"
+	@echo "... src/lua/LuaAudio.s"
 	@echo "... src/lua/LuaGraphics.o"
 	@echo "... src/lua/LuaGraphics.i"
 	@echo "... src/lua/LuaGraphics.s"
 	@echo "... src/lua/LuaInput.o"
 	@echo "... src/lua/LuaInput.i"
 	@echo "... src/lua/LuaInput.s"
+	@echo "... src/lua/LuaPhysics.o"
+	@echo "... src/lua/LuaPhysics.i"
+	@echo "... src/lua/LuaPhysics.s"
 	@echo "... src/lua/LuaState.o"
 	@echo "... src/lua/LuaState.i"
 	@echo "... src/lua/LuaState.s"
@@ -1313,6 +1445,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/physics/Physics.o"
+	@echo "... src/physics/Physics.i"
+	@echo "... src/physics/Physics.s"
 .PHONY : help
 
 

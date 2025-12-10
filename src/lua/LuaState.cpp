@@ -2,6 +2,8 @@
 #include "LuaGraphics.hpp"
 #include "LuaWindow.hpp"
 #include "LuaInput.hpp"
+#include "LuaPhysics.hpp"
+#include "LuaAudio.hpp"
 #include <iostream>
 #include <iomanip>
 #include <chrono>
@@ -116,6 +118,8 @@ void LuaState::registerAPI() {
     LuaGraphics::registerAPI(m_state);
     LuaWindow::registerAPI(m_state);
     LuaInput::registerAPI(m_state);
+    LuaPhysics::registerAPI(m_state);
+    LuaAudio::registerAPI(m_state);
 
     // Set terram as global
     lua_setglobal(m_state, "terram");

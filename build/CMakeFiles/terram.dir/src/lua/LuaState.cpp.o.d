@@ -669,6 +669,8 @@ CMakeFiles/terram.dir/src/lua/LuaState.cpp.o: \
   /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaGraphics.hpp \
   /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaWindow.hpp \
   /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaInput.hpp \
+  /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaPhysics.hpp \
+  /Users/alexanderbrianttadiosa/claude-master/Terram/src/lua/LuaAudio.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__locale \

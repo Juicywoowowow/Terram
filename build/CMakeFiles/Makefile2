@@ -120,12 +120,12 @@ CMakeFiles/lua.dir/clean:
 CMakeFiles/terram.dir/all: CMakeFiles/lua.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=34,35,36,37,38,39,40,41,42,43,44,45 "Built target terram"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50 "Built target terram"
 .PHONY : CMakeFiles/terram.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/terram.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles 45
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles 50
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/terram.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles 0
 .PHONY : CMakeFiles/terram.dir/rule
@@ -137,7 +137,7 @@ terram: CMakeFiles/terram.dir/rule
 # codegen rule for target.
 CMakeFiles/terram.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/terram.dir/build.make CMakeFiles/terram.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=34,35,36,37,38,39,40,41,42,43,44,45 "Finished codegen for target terram"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles --progress-num=34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50 "Finished codegen for target terram"
 .PHONY : CMakeFiles/terram.dir/codegen
 
 # clean rule for target.

@@ -1,10 +1,12 @@
 #define GL_SILENCE_DEPRECATION
 #include "Renderer.hpp"
 #include "Texture.hpp"
+#include "Font.hpp"
 #include <OpenGL/gl3.h>
 #include <cmath>
 #include <iostream>
 #include <vector>
+#include <string>
 
 namespace terram {
 
@@ -37,10 +39,24 @@ void main() {
 }
 )";
 
+// Text shader uses single-channel (RED) texture
+static const char* textFragmentShaderSource = R"(
+#version 330 core
+in vec2 TexCoord;
+out vec4 FragColor;
+uniform vec4 color;
+uniform sampler2D tex;
+void main() {
+    float alpha = texture(tex, TexCoord).r;
+    FragColor = vec4(color.rgb, color.a * alpha);
+}
+)";
+
 Renderer::~Renderer() {
     if (m_vao) glDeleteVertexArrays(1, &m_vao);
     if (m_vbo) glDeleteBuffers(1, &m_vbo);
     if (m_shaderProgram) glDeleteProgram(m_shaderProgram);
+    if (m_textShaderProgram) glDeleteProgram(m_textShaderProgram);
 }
 
 bool Renderer::init(int width, int height) {
@@ -68,14 +84,27 @@ void Renderer::initShaders() {
     glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
     glCompileShader(fragmentShader);
 
-    // Link program
+    // Link main program
     m_shaderProgram = glCreateProgram();
     glAttachShader(m_shaderProgram, vertexShader);
     glAttachShader(m_shaderProgram, fragmentShader);
     glLinkProgram(m_shaderProgram);
 
-    glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
+
+    // Compile text fragment shader
+    unsigned int textFragShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(textFragShader, 1, &textFragmentShaderSource, nullptr);
+    glCompileShader(textFragShader);
+
+    // Link text program
+    m_textShaderProgram = glCreateProgram();
+    glAttachShader(m_textShaderProgram, vertexShader);
+    glAttachShader(m_textShaderProgram, textFragShader);
+    glLinkProgram(m_textShaderProgram);
+
+    glDeleteShader(vertexShader);
+    glDeleteShader(textFragShader);
 
     glUseProgram(m_shaderProgram);
 }
@@ -101,15 +130,19 @@ void Renderer::setViewport(int width, int height) {
     m_height = height;
     glViewport(0, 0, width, height);
 
-    // Set orthographic projection
-    glUseProgram(m_shaderProgram);
+    // Set orthographic projection for both shaders
     float projection[16] = {
         2.0f / width, 0, 0, 0,
         0, -2.0f / height, 0, 0,
         0, 0, -1, 0,
         -1, 1, 0, 1
     };
+
+    glUseProgram(m_shaderProgram);
     glUniformMatrix4fv(glGetUniformLocation(m_shaderProgram, "projection"), 1, GL_FALSE, projection);
+
+    glUseProgram(m_textShaderProgram);
+    glUniformMatrix4fv(glGetUniformLocation(m_textShaderProgram, "projection"), 1, GL_FALSE, projection);
 }
 
 void Renderer::clear(const Color& color) {
@@ -254,4 +287,54 @@ void Renderer::draw(const Texture& texture, float x, float y, float rotation, fl
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
+void Renderer::print(const Font& font, const std::string& text, float x, float y) {
+    glUseProgram(m_textShaderProgram);
+    glBindVertexArray(m_vao);
+
+    float model[16] = {1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1};
+    glUniformMatrix4fv(glGetUniformLocation(m_textShaderProgram, "model"), 1, GL_FALSE, model);
+    glUniform4f(glGetUniformLocation(m_textShaderProgram, "color"),
+                m_currentColor.r, m_currentColor.g, m_currentColor.b, m_currentColor.a);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, font.getTextureId());
+
+    float cursorX = x;
+    float cursorY = y + font.getSize();  // Baseline offset
+
+    std::vector<float> vertices;
+
+    for (char c : text) {
+        const Font::GlyphInfo* glyph = font.getGlyph(c);
+        if (!glyph) {
+            if (c == ' ') cursorX += font.getSize() * 0.3f;
+            continue;
+        }
+
+        float gx = cursorX + glyph->xoff;
+        float gy = cursorY + glyph->yoff;
+        float gw = static_cast<float>(glyph->width);
+        float gh = static_cast<float>(glyph->height);
+
+        // Two triangles per glyph
+        vertices.insert(vertices.end(), {
+            gx,      gy,      glyph->x0, glyph->y0,
+            gx + gw, gy,      glyph->x1, glyph->y0,
+            gx + gw, gy + gh, glyph->x1, glyph->y1,
+            gx,      gy,      glyph->x0, glyph->y0,
+            gx + gw, gy + gh, glyph->x1, glyph->y1,
+            gx,      gy + gh, glyph->x0, glyph->y1
+        });
+
+        cursorX += glyph->xadvance;
+    }
+
+    if (!vertices.empty()) {
+        glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+        glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_DYNAMIC_DRAW);
+        glDrawArrays(GL_TRIANGLES, 0, static_cast<int>(vertices.size()) / 4);
+    }
+}
+
 } // namespace terram
+

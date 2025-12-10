@@ -18,6 +18,12 @@ private:
     static int line(lua_State* L);
     static int newImage(lua_State* L);
     static int draw(lua_State* L);
+
+    // Font functions
+    static int newFont(lua_State* L);
+    static int setFont(lua_State* L);
+    static int print(lua_State* L);
 };
 
 } // namespace terram
+

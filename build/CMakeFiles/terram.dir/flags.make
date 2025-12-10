@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks
+CXX_INCLUDES = -I/Users/alexanderbrianttadiosa/claude-master/Terram/src -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib -I/opt/homebrew/Cellar/sdl2/2.32.10/include -I/opt/homebrew/include/SDL2 -I/Users/alexanderbrianttadiosa/claude-master/Terram/lib/lua-5.4 -isystem /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2 -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks
 
 CXX_FLAGSarm64 = -g -std=gnu++17 -arch arm64
 
