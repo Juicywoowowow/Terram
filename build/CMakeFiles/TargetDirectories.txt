@@ -1,4 +1,0 @@
-/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles/lua.dir
-/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles/terram.dir
-/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles/edit_cache.dir
-/Users/alexanderbrianttadiosa/claude-master/Terram/build/CMakeFiles/rebuild_cache.dir
