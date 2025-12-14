@@ -1,4 +1,5 @@
 #include "request.hpp"
+#include "../vendor/json.hpp"
 #include <sstream>
 #include <algorithm>
 
@@ -52,6 +53,11 @@ std::unique_ptr<Request> Request::parse(const std::string& raw_request) {
             }
             
             req->headers[key] = value;
+            
+            // Parse cookies from Cookie header
+            if (key == "Cookie") {
+                req->parse_cookies(value);
+            }
         }
     }
     
@@ -59,6 +65,11 @@ std::unique_ptr<Request> Request::parse(const std::string& raw_request) {
     std::stringstream body_stream;
     body_stream << stream.rdbuf();
     req->body = body_stream.str();
+    
+    // Auto-parse JSON if content-type is JSON
+    if (req->has_json_content_type() && !req->body.empty()) {
+        req->parse_json_body();
+    }
     
     return req;
 }
@@ -97,4 +108,55 @@ void Request::parse_query_string(const std::string& query) {
     }
 }
 
+void Request::parse_cookies(const std::string& cookie_header) {
+    // Cookie header format: name1=value1; name2=value2; ...
+    std::istringstream stream(cookie_header);
+    std::string pair;
+    
+    while (std::getline(stream, pair, ';')) {
+        // Trim leading whitespace
+        size_t start = pair.find_first_not_of(" \t");
+        if (start != std::string::npos) {
+            pair = pair.substr(start);
+        }
+        
+        size_t eq_pos = pair.find('=');
+        if (eq_pos != std::string::npos) {
+            std::string name = pair.substr(0, eq_pos);
+            std::string value = pair.substr(eq_pos + 1);
+            cookies[name] = value;
+        }
+    }
+}
+
+bool Request::has_json_content_type() const {
+    auto it = headers.find("Content-Type");
+    if (it == headers.end()) {
+        return false;
+    }
+    
+    const std::string& content_type = it->second;
+    return content_type.find("application/json") != std::string::npos;
+}
+
+bool Request::parse_json_body() {
+    if (json_parsed) {
+        return json_body.has_value();
+    }
+    
+    json_parsed = true;
+    
+    if (body.empty()) {
+        return false;
+    }
+    
+    try {
+        json_body = nlohmann::json::parse(body);
+        return true;
+    } catch (const nlohmann::json::parse_error&) {
+        return false;
+    }
+}
+
 } // namespace luaweb
+

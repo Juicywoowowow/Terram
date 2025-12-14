@@ -133,9 +133,44 @@ app:get("/api/time", function(req, res)
     ))
 end)
 
--- Echo endpoint
+-- Echo endpoint (with JSON body parsing demo)
 app:post("/api/echo", function(req, res)
-    res:json('{"received":' .. (req.body and ('"' .. req.body .. '"') or 'null') .. '}')
+    -- If JSON was sent, req.json is automatically parsed!
+    if req.json then
+        print("Received JSON: " .. (req.json.message or "(no message)"))
+        res:json('{"received":' .. req.body .. ',"parsed":true}')
+    else
+        res:json('{"received":"' .. (req.body or "") .. '","parsed":false}')
+    end
+end)
+
+-- ============================================================
+-- COOKIE DEMO
+-- ============================================================
+
+-- Cookie demo - shows how to read and set cookies
+app:get("/cookie-demo", function(req, res)
+    -- Read existing cookie
+    local visits = tonumber(req.cookies.visits) or 0
+    visits = visits + 1
+    
+    -- Set cookie with options
+    res:cookie("visits", tostring(visits), {
+        maxAge = 86400,      -- 1 day
+        httpOnly = true,
+        path = "/"
+    })
+    
+    res:send(string.format([[
+        <html>
+        <body style="font-family: system-ui; background: #1a1a2e; color: #eee; padding: 40px;">
+            <h1>🍪 Cookie Demo</h1>
+            <p>You have visited this page <strong>%d</strong> time(s).</p>
+            <p>Refresh to see the counter increase!</p>
+            <p><a href="/" style="color: #00d9ff;">Back to home</a></p>
+        </body>
+        </html>
+    ]], visits))
 end)
 
 -- ============================================================

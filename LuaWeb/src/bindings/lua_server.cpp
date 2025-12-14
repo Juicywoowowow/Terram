@@ -1,5 +1,6 @@
 #include "lua_server.hpp"
 #include "../core/template.hpp"
+#include "../vendor/json.hpp"
 #include <iostream>
 #include <functional>
 
@@ -9,11 +10,45 @@ namespace luaweb {
 static const char* SERVER_MT = "LuaWeb.Server";
 static const char* RESPONSE_MT = "LuaWeb.Response";
 
+// Forward declaration
+static void push_json_to_lua(lua_State* L, const nlohmann::json& j);
+
+// Convert nlohmann::json to Lua value
+static void push_json_to_lua(lua_State* L, const nlohmann::json& j) {
+    if (j.is_null()) {
+        lua_pushnil(L);
+    } else if (j.is_boolean()) {
+        lua_pushboolean(L, j.get<bool>());
+    } else if (j.is_number_integer()) {
+        lua_pushinteger(L, j.get<int64_t>());
+    } else if (j.is_number()) {
+        lua_pushnumber(L, j.get<double>());
+    } else if (j.is_string()) {
+        lua_pushstring(L, j.get<std::string>().c_str());
+    } else if (j.is_array()) {
+        lua_newtable(L);
+        int index = 1;
+        for (const auto& item : j) {
+            push_json_to_lua(L, item);
+            lua_rawseti(L, -2, index++);
+        }
+    } else if (j.is_object()) {
+        lua_newtable(L);
+        for (auto& [key, val] : j.items()) {
+            push_json_to_lua(L, val);
+            lua_setfield(L, -2, key.c_str());
+        }
+    } else {
+        lua_pushnil(L);
+    }
+}
+
 Server* LuaServer::check_server(lua_State* L, int index) {
     void* ud = luaL_checkudata(L, index, SERVER_MT);
     luaL_argcheck(L, ud != nullptr, index, "'Server' expected");
     return *static_cast<Server**>(ud);
 }
+
 
 void LuaServer::push_request(lua_State* L, Request& req) {
     lua_newtable(L);
@@ -57,6 +92,23 @@ void LuaServer::push_request(lua_State* L, Request& req) {
         lua_setfield(L, -2, key.c_str());
     }
     lua_setfield(L, -2, "query");
+    
+    // Cookies table
+    lua_newtable(L);
+    for (const auto& [key, value] : req.cookies) {
+        lua_pushstring(L, value.c_str());
+        lua_setfield(L, -2, key.c_str());
+    }
+    lua_setfield(L, -2, "cookies");
+    
+    // JSON body (if parsed)
+    if (req.json_body.has_value()) {
+        push_json_to_lua(L, req.json_body.value());
+        lua_setfield(L, -2, "json");
+    } else {
+        lua_pushnil(L);
+        lua_setfield(L, -2, "json");
+    }
 }
 
 // Response userdata structure
@@ -268,6 +320,69 @@ static int lua_response_json(lua_State* L) {
     return 0;
 }
 
+// Set a cookie
+static int lua_response_cookie(lua_State* L) {
+    ResponseUD* rud = check_response(L, 1);
+    const char* name = luaL_checkstring(L, 2);
+    const char* value = luaL_checkstring(L, 3);
+    
+    CookieOptions opts;
+    
+    // Optional options table at index 4
+    if (lua_istable(L, 4)) {
+        lua_getfield(L, 4, "maxAge");
+        if (lua_isinteger(L, -1)) {
+            opts.max_age = lua_tointeger(L, -1);
+        }
+        lua_pop(L, 1);
+        
+        lua_getfield(L, 4, "path");
+        if (lua_isstring(L, -1)) {
+            opts.path = lua_tostring(L, -1);
+        }
+        lua_pop(L, 1);
+        
+        lua_getfield(L, 4, "domain");
+        if (lua_isstring(L, -1)) {
+            opts.domain = lua_tostring(L, -1);
+        }
+        lua_pop(L, 1);
+        
+        lua_getfield(L, 4, "httpOnly");
+        if (lua_isboolean(L, -1)) {
+            opts.http_only = lua_toboolean(L, -1);
+        }
+        lua_pop(L, 1);
+        
+        lua_getfield(L, 4, "secure");
+        if (lua_isboolean(L, -1)) {
+            opts.secure = lua_toboolean(L, -1);
+        }
+        lua_pop(L, 1);
+        
+        lua_getfield(L, 4, "sameSite");
+        if (lua_isstring(L, -1)) {
+            opts.same_site = lua_tostring(L, -1);
+        }
+        lua_pop(L, 1);
+    }
+    
+    rud->response->cookie(name, value, opts);
+    lua_pushvalue(L, 1);  // Return self for chaining
+    return 1;
+}
+
+// Clear a cookie
+static int lua_response_clear_cookie(lua_State* L) {
+    ResponseUD* rud = check_response(L, 1);
+    const char* name = luaL_checkstring(L, 2);
+    const char* path = luaL_optstring(L, 3, "/");
+    
+    rud->response->clear_cookie(name, path);
+    lua_pushvalue(L, 1);
+    return 1;
+}
+
 void LuaServer::setup_response(lua_State* L, Response& res) {
     ResponseUD* rud = static_cast<ResponseUD*>(lua_newuserdata(L, sizeof(ResponseUD)));
     rud->response = &res;
@@ -448,6 +563,10 @@ int LuaServer::luaopen_luaweb(lua_State* L) {
     lua_setfield(L, -2, "json");
     lua_pushcfunction(L, lua_response_render);
     lua_setfield(L, -2, "render");
+    lua_pushcfunction(L, lua_response_cookie);
+    lua_setfield(L, -2, "cookie");
+    lua_pushcfunction(L, lua_response_clear_cookie);
+    lua_setfield(L, -2, "clearCookie");
     
     lua_pushvalue(L, -1);
     lua_setfield(L, -2, "__index");

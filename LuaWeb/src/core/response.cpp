@@ -42,6 +42,46 @@ Response& Response::text(const std::string& content) {
     return *this;
 }
 
+Response& Response::cookie(const std::string& name, const std::string& value, 
+                           const CookieOptions& options) {
+    std::ostringstream cookie;
+    cookie << name << "=" << value;
+    
+    if (options.max_age >= 0) {
+        cookie << "; Max-Age=" << options.max_age;
+    }
+    
+    if (!options.path.empty()) {
+        cookie << "; Path=" << options.path;
+    }
+    
+    if (!options.domain.empty()) {
+        cookie << "; Domain=" << options.domain;
+    }
+    
+    if (options.http_only) {
+        cookie << "; HttpOnly";
+    }
+    
+    if (options.secure) {
+        cookie << "; Secure";
+    }
+    
+    if (!options.same_site.empty()) {
+        cookie << "; SameSite=" << options.same_site;
+    }
+    
+    cookies_.push_back(cookie.str());
+    return *this;
+}
+
+Response& Response::clear_cookie(const std::string& name, const std::string& path) {
+    CookieOptions opts;
+    opts.max_age = 0;
+    opts.path = path;
+    return cookie(name, "", opts);
+}
+
 std::string Response::build() const {
     std::ostringstream response;
     
@@ -51,6 +91,11 @@ std::string Response::build() const {
     // Headers
     for (const auto& [key, value] : headers_) {
         response << key << ": " << value << "\r\n";
+    }
+    
+    // Cookies (Set-Cookie headers)
+    for (const auto& cookie : cookies_) {
+        response << "Set-Cookie: " << cookie << "\r\n";
     }
     
     // Content-Length
