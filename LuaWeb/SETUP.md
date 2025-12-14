@@ -2,7 +2,24 @@
 
 This guide covers how to build LuaWeb from source, including the Rust template engine.
 
-## 📋 Requirements
+## Quick Setup (Recommended)
+
+```bash
+git clone https://github.com/Juicywoowowow/Terram.git
+cd Terram/LuaWeb
+./setup.sh
+```
+
+The setup script will:
+1. Check for all required dependencies
+2. Show what's missing and how to install it
+3. Build everything automatically
+
+---
+
+## Manual Setup
+
+If you prefer to build manually, follow the steps below.
 
 ### Required
 - **CMake** 3.16+
