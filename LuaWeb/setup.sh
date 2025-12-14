@@ -175,6 +175,38 @@ else
     ALL_OK=false
 fi
 
+# Check: Node.js
+if command -v node &> /dev/null; then
+    NODE_VER=$(node --version)
+    DEPS_FOUND="$DEPS_FOUND\n  [OK] node ($NODE_VER)"
+else
+    DEPS_MISSING="$DEPS_MISSING\n  [MISSING] node (Node.js)"
+    case $OS in
+        macos)  INSTALL_HINTS="$INSTALL_HINTS\n  brew install node" ;;
+        debian) INSTALL_HINTS="$INSTALL_HINTS\n  sudo apt install nodejs npm" ;;
+        fedora) INSTALL_HINTS="$INSTALL_HINTS\n  sudo dnf install nodejs npm" ;;
+        arch)   INSTALL_HINTS="$INSTALL_HINTS\n  sudo pacman -S nodejs npm" ;;
+        *)      INSTALL_HINTS="$INSTALL_HINTS\n  Install Node.js from https://nodejs.org" ;;
+    esac
+    ALL_OK=false
+fi
+
+# Check: npm
+if command -v npm &> /dev/null; then
+    NPM_VER=$(npm --version)
+    DEPS_FOUND="$DEPS_FOUND\n  [OK] npm ($NPM_VER)"
+else
+    DEPS_MISSING="$DEPS_MISSING\n  [MISSING] npm"
+    case $OS in
+        macos)  INSTALL_HINTS="$INSTALL_HINTS\n  brew install node" ;;
+        debian) INSTALL_HINTS="$INSTALL_HINTS\n  sudo apt install npm" ;;
+        fedora) INSTALL_HINTS="$INSTALL_HINTS\n  sudo dnf install npm" ;;
+        arch)   INSTALL_HINTS="$INSTALL_HINTS\n  sudo pacman -S npm" ;;
+        *)      INSTALL_HINTS="$INSTALL_HINTS\n  Install npm" ;;
+    esac
+    ALL_OK=false
+fi
+
 # ============================================================
 # Report Results
 # ============================================================
@@ -210,22 +242,30 @@ echo "================================================"
 echo ""
 
 # Step 1: Build Rust template engine
-echo "[1/3] Building Rust template engine..."
+echo "[1/4] Building Rust template engine..."
 cd template
 cargo build --release
 cd ..
 echo "      Done."
 echo ""
 
-# Step 2: Build C++ core and Lua bindings
-echo "[2/3] Building C++ core and Lua bindings..."
+# Step 2: Install Node.js dependencies for database bridge
+echo "[2/4] Installing Node.js dependencies..."
+cd database
+npm install --silent
+cd ..
+echo "      Done."
+echo ""
+
+# Step 3: Build C++ core and Lua bindings
+echo "[3/4] Building C++ core and Lua bindings..."
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build -j$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
 echo "      Done."
 echo ""
 
-# Step 3: Copy template engine to build directory
-echo "[3/3] Copying template engine to build directory..."
+# Step 4: Copy template engine to build directory
+echo "[4/4] Copying template engine to build directory..."
 if [ "$OS" = "macos" ]; then
     cp template/target/release/liblwtemplate.dylib build/
 else
@@ -241,6 +281,9 @@ echo ""
 echo "Setting up local test environment..."
 cmake --build build --target setup_local
 echo ""
+
+# Create __DBWEB__ directory
+mkdir -p __DBWEB__
 
 # ============================================================
 # Summary
@@ -258,9 +301,12 @@ if [ "$OS" = "macos" ]; then
 else
     echo "  build/liblwtemplate.so   - Template engine"
 fi
+echo "  database/               - SQLite bridge (Node.js)"
+echo "  __DBWEB__/              - Database storage directory"
 echo ""
 echo "To run the example:"
 echo "  cd build && ./luaweb_runner ../examples/hello_world.lua"
 echo ""
 echo "Then visit: http://localhost:8080"
 echo ""
+

@@ -22,6 +22,7 @@ add_library(luaweb_core STATIC
     src/core/request.cpp
     src/core/response.cpp
     src/core/template.cpp
+    src/core/database.cpp
 )
 target_include_directories(luaweb_core PUBLIC 
     ${CMAKE_SOURCE_DIR}/src/core

@@ -13,17 +13,40 @@
 #include <fstream>
 #include <filesystem>
 #include <array>
+#include <random>
 
 namespace luaweb {
 
+// Generate random hex string for server ID
+static std::string generate_server_id() {
+    static const char hex_chars[] = "0123456789abcdef";
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    static std::uniform_int_distribution<> dis(0, 15);
+    
+    std::string result;
+    result.reserve(8);
+    for (int i = 0; i < 8; ++i) {
+        result += hex_chars[dis(gen)];
+    }
+    return result;
+}
+
 Server::Server(int port) 
-    : port_(port), server_fd_(-1), running_(false), web_lua_enabled_(false) {
+    : port_(port)
+    , server_fd_(-1)
+    , running_(false)
+    , web_lua_enabled_(false)
+    , server_id_(generate_server_id())
+    , db_bridge_(std::make_unique<DatabaseBridge>(server_id_)) {
     // Ignore SIGPIPE to prevent crashes on broken connections
     signal(SIGPIPE, SIG_IGN);
 }
 
 Server::~Server() {
     stop();
+    // Database bridge will be cleaned up by unique_ptr, which calls its destructor
+    // The destructor will shut down the Node.js process
 }
 
 void Server::route(const std::string& method, const std::string& path, RouteHandler handler) {

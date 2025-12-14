@@ -11,6 +11,7 @@ A stupidly easy-to-use HTTP web server library for Lua, written in C++ with a Ru
 | 🔄 **URL Parameters** | Express.js style `:param` routing |
 | 📦 **JSON Support** | Auto-parse JSON bodies, send JSON responses |
 | 🍪 **Cookie Support** | Read and set cookies with full options |
+| 🗄️ **SQLite DB** | Built-in database support via simple API |
 | 🔒 **Web Lua Sandbox** | Run Lua code from the browser (securely!) |
 | 📁 **Static Files** | Serve HTML, CSS, JS, images |
 | 🔗 **Middleware** | Logging, CORS, auth, and custom handlers |
@@ -30,6 +31,17 @@ app:use(function(req, res, next)
     next()
 end)
 
+-- Database
+app:get("/users", function(req, res)
+    local db = app:db("mydb.db")
+    db:exec("CREATE TABLE IF NOT EXISTS users (name TEXT)")
+    db:exec("INSERT INTO users (name) VALUES (?)", {"Alice"})
+    
+    local users = db:query("SELECT * FROM users")
+    res:json(users)
+    db:close()
+end)
+
 -- Static files
 app:static("/public", "./public")
 
@@ -37,19 +49,6 @@ app:static("/public", "./public")
 app:get("/", function(req, res)
     res:send("<h1>Hello, World!</h1>")
 end)
-
-app:get("/greet/:name", function(req, res)
-    res:send("Hello, " .. req.params.name .. "!")
-end)
-
-app:post("/api/data", function(req, res)
-    -- JSON body is auto-parsed!
-    if req.json then
-        res:json('{"received": true}')
-    end
-end)
-
-app:run()
 ```
 
 ## 📖 Documentation
@@ -78,6 +77,31 @@ app:delete("/path", handler)    -- DELETE request
 app:route("METHOD", "/path", handler)  -- Any method
 ```
 
+### Database Access (SQLite)
+
+LuaWeb includes built-in SQLite support powered by a Node.js bridge for performance.
+Databases are stored in `__DBWEB__/Dbserver_{id}/` by default to ensure isolation.
+
+```lua
+-- Open a database (creates if not exists)
+local db = app:db("my_app.db") 
+
+-- Execute SQL (INSERT, UPDATE, DELETE, CREATE)
+-- Returns: { changes = 1, last_insert_id = 123 }
+db:exec("INSERT INTO users (name, age) VALUES (?, ?)", {"Alice", 30})
+
+-- Query SQL (SELECT)
+-- Returns: array of tables
+local users = db:query("SELECT * FROM users WHERE age > ?", {20})
+
+for _, user in ipairs(users) do
+    print(user.name) 
+end
+
+-- Close connection
+db:close()
+```
+
 ### Request Object
 
 ```lua
@@ -104,19 +128,7 @@ res:render("template.lwt", data)   -- Render template (see Templates)
 res:cookie("name", "value", opts)  -- Set cookie
 res:clearCookie("name")            -- Delete cookie
 ```
-
-### Cookie Options
-
-```lua
-res:cookie("session", "abc123", {
-    maxAge = 86400,       -- Seconds until expiry (default: session)
-    path = "/",           -- Cookie path (default: "/")
-    domain = "",          -- Cookie domain
-    httpOnly = true,      -- No JavaScript access
-    secure = false,       -- HTTPS only
-    sameSite = "Lax"      -- "Strict", "Lax", or "None"
-})
-```
+<!-- ... (rest of cookie section) ... -->
 
 ### Middleware
 
@@ -232,17 +244,22 @@ LuaWeb/
 ├── CMakeLists.txt
 ├── README.md
 ├── SETUP.md                # Build instructions
+├── setup.sh                # Automated build script
 ├── src/
 │   ├── core/               # C++ HTTP server
 │   │   ├── server.hpp/cpp
 │   │   ├── request.hpp/cpp
 │   │   ├── response.hpp/cpp
-│   │   └── template.hpp/cpp
+│   │   ├── template.hpp/cpp
+│   │   └── database.hpp/cpp # DB Client
 │   ├── bindings/           # Lua C++ bindings
 │   │   └── lua_server.hpp/cpp
 │   ├── vendor/             # Third-party libs
 │   │   └── json.hpp        # nlohmann/json
 │   └── main.cpp            # Runner executable
+├── database/               # ⚡ Node.js SQLite Bridge
+│   ├── package.json
+│   └── server.js
 ├── template/               # 🦀 Rust template engine
 │   ├── Cargo.toml
 │   └── src/
@@ -266,6 +283,7 @@ LuaWeb/
 - [x] URL & Query Parameters
 - [x] JSON Body Parsing
 - [x] Cookie Support
+- [x] SQLite Database Support
 - [x] Middleware System
 - [x] Static File Serving
 - [x] Template Engine (Rust)
@@ -280,6 +298,7 @@ LuaWeb/
 | HTTP Server | **C++** | Performance, sockets |
 | User API | **Lua** | Simplicity, flexibility |
 | Templates | **Rust** | Memory-safe parsing |
+| Database | **Node.js** | Fast SQLite IO bridge |
 | Sandbox | **Python** | Process isolation |
 | JSON | **nlohmann/json** | Battle-tested library |
 

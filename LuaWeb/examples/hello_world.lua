@@ -195,8 +195,72 @@ app:get("/demo", function(req, res)
     })
 end)
 
+-- ============================================================
+-- DATABASE DEMO (SQLite via Node.js bridge)
+-- ============================================================
+
+-- Database demo - shows CRUD operations
+app:get("/db-demo", function(req, res)
+    -- Open database (stored in __DBWEB__/demo.db)
+    local db = app:db("demo.db")
+    
+    -- Create table if not exists
+    db:exec([[
+        CREATE TABLE IF NOT EXISTS visitors (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            visited_at TEXT DEFAULT CURRENT_TIMESTAMP
+        )
+    ]])
+    
+    -- Insert a visitor
+    local name = req.query.name or "Anonymous"
+    db:exec("INSERT INTO visitors (name) VALUES (?)", {name})
+    
+    -- Get all visitors
+    local visitors = db:query("SELECT * FROM visitors ORDER BY id DESC LIMIT 10")
+    
+    -- Build HTML
+    local html = [[
+        <html>
+        <body style="font-family: system-ui; background: #1a1a2e; color: #eee; padding: 40px;">
+            <h1>SQLite Database Demo</h1>
+            <p>Your name was added to the database!</p>
+            <p>Try: <a href="/db-demo?name=YourName" style="color: #00d9ff;">/db-demo?name=YourName</a></p>
+            <h2>Recent Visitors (last 10)</h2>
+            <table style="border-collapse: collapse; width: 100%;">
+                <tr style="background: #16213e;">
+                    <th style="padding: 10px; text-align: left;">ID</th>
+                    <th style="padding: 10px; text-align: left;">Name</th>
+                    <th style="padding: 10px; text-align: left;">Visited At</th>
+                </tr>
+    ]]
+    
+    for _, visitor in ipairs(visitors) do
+        html = html .. string.format([[
+            <tr style="border-bottom: 1px solid #333;">
+                <td style="padding: 10px;">%d</td>
+                <td style="padding: 10px;">%s</td>
+                <td style="padding: 10px;">%s</td>
+            </tr>
+        ]], visitor.id, visitor.name, visitor.visited_at or "N/A")
+    end
+    
+    html = html .. [[
+            </table>
+            <p style="margin-top: 20px;"><a href="/" style="color: #00d9ff;">Back to home</a></p>
+        </body>
+        </html>
+    ]]
+    
+    db:close()
+    res:send(html)
+end)
+
 print("Server starting on http://localhost:8080")
 print("Web Lua execution enabled - POST to /lua/run")
 print("Template demo at http://localhost:8080/demo")
+print("Database demo at http://localhost:8080/db-demo")
 print("Press Ctrl+C to stop")
 app:run()
+

@@ -10,6 +10,7 @@
 
 #include "request.hpp"
 #include "response.hpp"
+#include "database.hpp"
 
 namespace luaweb {
 
@@ -69,6 +70,10 @@ public:
     // Web Lua execution
     void enable_web_lua(bool enabled = true);
     bool web_lua_enabled() const { return web_lua_enabled_; }
+    
+    // Database access
+    DatabaseBridge& database_bridge() { return *db_bridge_; }
+    const std::string& server_id() const { return server_id_; }
 
 private:
     int port_;
@@ -78,6 +83,10 @@ private:
     std::vector<MiddlewareHandler> middlewares_;
     std::vector<StaticMount> static_mounts_;
     bool web_lua_enabled_;
+    
+    // Per-server identification and database bridge
+    std::string server_id_;
+    std::unique_ptr<DatabaseBridge> db_bridge_;
 
     // Internal methods
     bool bind_socket();
@@ -101,3 +110,4 @@ private:
 };
 
 } // namespace luaweb
+

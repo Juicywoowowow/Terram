@@ -1,5 +1,6 @@
 #include "lua_server.hpp"
 #include "../core/template.hpp"
+#include "../core/database.hpp"
 #include "../vendor/json.hpp"
 #include <iostream>
 #include <functional>
@@ -9,6 +10,7 @@ namespace luaweb {
 // Metatables
 static const char* SERVER_MT = "LuaWeb.Server";
 static const char* RESPONSE_MT = "LuaWeb.Response";
+static const char* DATABASE_MT = "LuaWeb.Database";
 
 // Forward declaration
 static void push_json_to_lua(lua_State* L, const nlohmann::json& j);
@@ -547,6 +549,165 @@ static int lua_server_static(lua_State* L) {
     return 1;
 }
 
+// ============================================================
+// Database Bindings
+// ============================================================
+
+struct DatabaseUD {
+    Database* db;
+};
+
+static DatabaseUD* check_database(lua_State* L, int index) {
+    return static_cast<DatabaseUD*>(luaL_checkudata(L, index, DATABASE_MT));
+}
+
+// Helper: Convert Lua value to DbValue
+static DbValue lua_to_dbvalue(lua_State* L, int index) {
+    int type = lua_type(L, index);
+    switch (type) {
+        case LUA_TNIL:
+            return nullptr;
+        case LUA_TBOOLEAN:
+            return static_cast<int64_t>(lua_toboolean(L, index));
+        case LUA_TNUMBER:
+            if (lua_isinteger(L, index)) {
+                return static_cast<int64_t>(lua_tointeger(L, index));
+            } else {
+                return lua_tonumber(L, index);
+            }
+        case LUA_TSTRING:
+            return std::string(lua_tostring(L, index));
+        default:
+            return nullptr;
+    }
+}
+
+// Helper: Push DbValue to Lua
+static void push_dbvalue(lua_State* L, const DbValue& val) {
+    std::visit([L](auto&& arg) {
+        using T = std::decay_t<decltype(arg)>;
+        if constexpr (std::is_same_v<T, std::nullptr_t>) {
+            lua_pushnil(L);
+        } else if constexpr (std::is_same_v<T, int64_t>) {
+            lua_pushinteger(L, arg);
+        } else if constexpr (std::is_same_v<T, double>) {
+            lua_pushnumber(L, arg);
+        } else if constexpr (std::is_same_v<T, std::string>) {
+            lua_pushstring(L, arg.c_str());
+        }
+    }, val);
+}
+
+// server:db(path) - Create new database connection using server's bridge
+static int lua_server_db(lua_State* L) {
+    Server* server = LuaServer::check_server(L, 1);
+    const char* path = luaL_optstring(L, 2, "");
+    
+    DatabaseUD* ud = static_cast<DatabaseUD*>(lua_newuserdata(L, sizeof(DatabaseUD)));
+    ud->db = new Database(server->database_bridge(), path);
+    
+    if (!ud->db->is_open()) {
+        std::string error = ud->db->last_error();
+        delete ud->db;
+        ud->db = nullptr;
+        return luaL_error(L, "Failed to open database: %s", error.c_str());
+    }
+    
+    luaL_getmetatable(L, DATABASE_MT);
+    lua_setmetatable(L, -2);
+    
+    return 1;
+}
+
+// db:exec(sql, params) - Execute SQL
+static int lua_database_exec(lua_State* L) {
+    DatabaseUD* ud = check_database(L, 1);
+    if (!ud->db || !ud->db->is_open()) {
+        return luaL_error(L, "Database not open");
+    }
+    
+    const char* sql = luaL_checkstring(L, 2);
+    
+    // Get params from table at index 3
+    std::vector<DbValue> params;
+    if (lua_istable(L, 3)) {
+        lua_pushnil(L);
+        while (lua_next(L, 3) != 0) {
+            params.push_back(lua_to_dbvalue(L, -1));
+            lua_pop(L, 1);
+        }
+    }
+    
+    ExecResult result = ud->db->exec(sql, params);
+    
+    if (!ud->db->last_error().empty()) {
+        return luaL_error(L, "SQL error: %s", ud->db->last_error().c_str());
+    }
+    
+    // Return last insert ID
+    lua_pushinteger(L, result.last_insert_id);
+    return 1;
+}
+
+// db:query(sql, params) - Query SQL
+static int lua_database_query(lua_State* L) {
+    DatabaseUD* ud = check_database(L, 1);
+    if (!ud->db || !ud->db->is_open()) {
+        return luaL_error(L, "Database not open");
+    }
+    
+    const char* sql = luaL_checkstring(L, 2);
+    
+    // Get params from table at index 3
+    std::vector<DbValue> params;
+    if (lua_istable(L, 3)) {
+        lua_pushnil(L);
+        while (lua_next(L, 3) != 0) {
+            params.push_back(lua_to_dbvalue(L, -1));
+            lua_pop(L, 1);
+        }
+    }
+    
+    DbResult rows = ud->db->query(sql, params);
+    
+    if (!ud->db->last_error().empty()) {
+        return luaL_error(L, "SQL error: %s", ud->db->last_error().c_str());
+    }
+    
+    // Return table of rows
+    lua_newtable(L);
+    int i = 1;
+    for (const auto& row : rows) {
+        lua_newtable(L);
+        for (const auto& [key, val] : row) {
+            push_dbvalue(L, val);
+            lua_setfield(L, -2, key.c_str());
+        }
+        lua_rawseti(L, -2, i++);
+    }
+    
+    return 1;
+}
+
+// db:close() - Close database
+static int lua_database_close(lua_State* L) {
+    DatabaseUD* ud = check_database(L, 1);
+    if (ud->db) {
+        ud->db->close();
+    }
+    return 0;
+}
+
+// db:__gc - Garbage collection
+static int lua_database_gc(lua_State* L) {
+    DatabaseUD* ud = check_database(L, 1);
+    if (ud->db) {
+        delete ud->db;
+        ud->db = nullptr;
+    }
+    return 0;
+}
+
 int LuaServer::luaopen_luaweb(lua_State* L) {
     // Create Response metatable
     luaL_newmetatable(L, RESPONSE_MT);
@@ -595,7 +756,25 @@ int LuaServer::luaopen_luaweb(lua_State* L) {
     lua_setfield(L, -2, "use");
     lua_pushcfunction(L, lua_server_static);
     lua_setfield(L, -2, "static");
+    lua_pushcfunction(L, lua_server_db);
+    lua_setfield(L, -2, "db");
     lua_pushcfunction(L, lua_server_gc);
+    lua_setfield(L, -2, "__gc");
+    
+    lua_pushvalue(L, -1);
+    lua_setfield(L, -2, "__index");
+    lua_pop(L, 1);
+    
+    // Create Database metatable
+    luaL_newmetatable(L, DATABASE_MT);
+    
+    lua_pushcfunction(L, lua_database_exec);
+    lua_setfield(L, -2, "exec");
+    lua_pushcfunction(L, lua_database_query);
+    lua_setfield(L, -2, "query");
+    lua_pushcfunction(L, lua_database_close);
+    lua_setfield(L, -2, "close");
+    lua_pushcfunction(L, lua_database_gc);
     lua_setfield(L, -2, "__gc");
     
     lua_pushvalue(L, -1);

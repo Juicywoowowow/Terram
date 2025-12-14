@@ -1,9 +1,11 @@
 # Build output
 build/
 template/target/
+database/node_modules/
 
-# Cache directories
+# Cache/Storage directories
 __cacheweb__/
+__DBWEB__/
 
 # IDE files
 .vscode/
