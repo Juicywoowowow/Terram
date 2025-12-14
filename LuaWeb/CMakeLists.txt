@@ -21,11 +21,14 @@ add_library(luaweb_core STATIC
     src/core/server.cpp
     src/core/request.cpp
     src/core/response.cpp
+    src/core/template.cpp
 )
 target_include_directories(luaweb_core PUBLIC 
     ${CMAKE_SOURCE_DIR}/src/core
 )
 target_compile_options(luaweb_core PRIVATE -Wall -Wextra)
+# Link dl for dynamic loading of Rust library
+target_link_libraries(luaweb_core PUBLIC ${CMAKE_DL_LIBS})
 
 # Lua bindings library (shared for Lua require)
 add_library(luaweb SHARED
@@ -65,6 +68,20 @@ target_link_libraries(luaweb_runner PRIVATE
 )
 target_compile_options(luaweb_runner PRIVATE -Wall -Wextra)
 
+# Build Rust template engine
+set(RUST_LIB_NAME "liblwtemplate")
+if(APPLE)
+    set(RUST_LIB_EXT "dylib")
+else()
+    set(RUST_LIB_EXT "so")
+endif()
+
+add_custom_target(build_template
+    COMMAND cargo build --release
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/template
+    COMMENT "Building Rust template engine"
+)
+
 # Install targets
 install(TARGETS luaweb_runner DESTINATION bin)
 install(TARGETS luaweb DESTINATION lib/lua/${LUA_VERSION_MAJOR}.${LUA_VERSION_MINOR})
@@ -75,9 +92,13 @@ install(DIRECTORY scripts/ DESTINATION share/luaweb/scripts)
 add_custom_target(setup_local
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/lua
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/scripts
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/templates
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lua ${CMAKE_BINARY_DIR}/lua
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/scripts ${CMAKE_BINARY_DIR}/scripts
     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:luaweb> ${CMAKE_BINARY_DIR}/
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different 
+        ${CMAKE_SOURCE_DIR}/template/target/release/${RUST_LIB_NAME}.${RUST_LIB_EXT}
+        ${CMAKE_BINARY_DIR}/ || true
     COMMENT "Setting up local test environment"
 )
 add_dependencies(setup_local luaweb)
@@ -88,3 +109,6 @@ message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "Install prefix: ${CMAKE_INSTALL_PREFIX}")
 message(STATUS "")
+message(STATUS "To build template engine: cmake --build build --target build_template")
+message(STATUS "")
+

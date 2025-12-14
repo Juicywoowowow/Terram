@@ -1,4 +1,5 @@
 #include "lua_server.hpp"
+#include "../core/template.hpp"
 #include <iostream>
 #include <functional>
 
@@ -98,6 +99,122 @@ static int lua_response_text(lua_State* L) {
     ResponseUD* rud = check_response(L, 1);
     const char* content = luaL_checkstring(L, 2);
     rud->response->text(content);
+    rud->response->mark_sent();
+    return 0;
+}
+
+// Helper to convert Lua table to JSON string
+static std::string lua_table_to_json(lua_State* L, int index);
+
+static std::string lua_value_to_json(lua_State* L, int index) {
+    int type = lua_type(L, index);
+    
+    switch (type) {
+        case LUA_TNIL:
+            return "null";
+        case LUA_TBOOLEAN:
+            return lua_toboolean(L, index) ? "true" : "false";
+        case LUA_TNUMBER:
+            return std::to_string(lua_tonumber(L, index));
+        case LUA_TSTRING: {
+            std::string s = lua_tostring(L, index);
+            // Escape quotes
+            std::string escaped = "\"";
+            for (char c : s) {
+                if (c == '"') escaped += "\\\"";
+                else if (c == '\\') escaped += "\\\\";
+                else if (c == '\n') escaped += "\\n";
+                else if (c == '\r') escaped += "\\r";
+                else if (c == '\t') escaped += "\\t";
+                else escaped += c;
+            }
+            escaped += "\"";
+            return escaped;
+        }
+        case LUA_TTABLE:
+            return lua_table_to_json(L, index);
+        default:
+            return "null";
+    }
+}
+
+static std::string lua_table_to_json(lua_State* L, int index) {
+    if (index < 0) {
+        index = lua_gettop(L) + index + 1;
+    }
+    
+    // Check if it's an array (sequential integer keys starting from 1)
+    bool is_array = true;
+    int count = 0;
+    lua_pushnil(L);
+    while (lua_next(L, index) != 0) {
+        count++;
+        if (!lua_isinteger(L, -2) || lua_tointeger(L, -2) != count) {
+            is_array = false;
+        }
+        lua_pop(L, 1);
+    }
+    
+    std::string result;
+    if (is_array && count > 0) {
+        result = "[";
+        for (int i = 1; i <= count; i++) {
+            if (i > 1) result += ",";
+            lua_rawgeti(L, index, i);
+            result += lua_value_to_json(L, -1);
+            lua_pop(L, 1);
+        }
+        result += "]";
+    } else {
+        result = "{";
+        bool first = true;
+        lua_pushnil(L);
+        while (lua_next(L, index) != 0) {
+            if (!first) result += ",";
+            first = false;
+            
+            // Key
+            if (lua_isstring(L, -2)) {
+                result += "\"";
+                result += lua_tostring(L, -2);
+                result += "\":";
+            } else {
+                lua_pop(L, 1);
+                continue;
+            }
+            
+            // Value
+            result += lua_value_to_json(L, -1);
+            lua_pop(L, 1);
+        }
+        result += "}";
+    }
+    
+    return result;
+}
+
+static int lua_response_render(lua_State* L) {
+    ResponseUD* rud = check_response(L, 1);
+    const char* template_path = luaL_checkstring(L, 2);
+    
+    // Convert Lua table at index 3 to JSON
+    std::string json_data = "{}";
+    if (lua_istable(L, 3)) {
+        json_data = lua_table_to_json(L, 3);
+    }
+    
+    // Use template engine
+    static TemplateEngine engine;
+    std::string html = engine.render(template_path, json_data, "__cacheweb__/templates");
+    
+    if (html.empty()) {
+        std::string error = engine.get_error();
+        rud->response->status(500);
+        rud->response->text("Template Error: " + error);
+    } else {
+        rud->response->html(html);
+    }
+    
     rud->response->mark_sent();
     return 0;
 }
@@ -329,6 +446,8 @@ int LuaServer::luaopen_luaweb(lua_State* L) {
     lua_setfield(L, -2, "text");
     lua_pushcfunction(L, lua_response_json);
     lua_setfield(L, -2, "json");
+    lua_pushcfunction(L, lua_response_render);
+    lua_setfield(L, -2, "render");
     
     lua_pushvalue(L, -1);
     lua_setfield(L, -2, "__index");

@@ -138,7 +138,30 @@ app:post("/api/echo", function(req, res)
     res:json('{"received":' .. (req.body and ('"' .. req.body .. '"') or 'null') .. '}')
 end)
 
+-- ============================================================
+-- TEMPLATE ENGINE DEMO
+-- ============================================================
+
+-- Template rendering using .lwt files (Rust-powered!)
+app:get("/demo", function(req, res)
+    res:render("../examples/templates/welcome.lwt", {
+        title = "LuaWeb Template Demo",
+        user = {
+            name = "LuaWeb User",
+            email = "user@luaweb.dev",
+            admin = true
+        },
+        items = {
+            { name = "Widget", price = "9.99" },
+            { name = "Gadget", price = "19.99" },
+            { name = "Gizmo", price = "29.99" },
+            { name = "Doohickey", price = "39.99" }
+        }
+    })
+end)
+
 print("Server starting on http://localhost:8080")
 print("Web Lua execution enabled - POST to /lua/run")
+print("Template demo at http://localhost:8080/demo")
 print("Press Ctrl+C to stop")
 app:run()

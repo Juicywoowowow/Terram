@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@{title}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #eee;
+            padding: 40px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { color: #e94560; margin-bottom: 20px; }
+        h2 { color: #00d9ff; margin: 20px 0 10px; }
+        .welcome { 
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .item {
+            background: #16213e;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #e94560;
+        }
+        .item-name { font-weight: bold; color: #e94560; }
+        .item-price { color: #00d9ff; }
+        a { color: #00d9ff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>@{title}</h1>
+        
+        <div class="welcome">
+            <p>Welcome, <strong>@{user.name}</strong>!</p>
+            <p>Email: @{user.email}</p>
+            @if user.admin
+            <p>🔑 You have admin access</p>
+            @end
+        </div>
+        
+        @if items
+        <h2>Products</h2>
+        <div class="items">
+            @for item in items
+            <div class="item">
+                <div class="item-name">@{item.name}</div>
+                <div class="item-price">$@{item.price}</div>
+            </div>
+            @end
+        </div>
+        @else
+        <p>No products available.</p>
+        @end
+        
+        <p style="margin-top: 30px;"><a href="/">← Back to Home</a></p>
+    </div>
+</body>
+</html>

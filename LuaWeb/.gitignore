@@ -1,5 +1,6 @@
 # Build output
 build/
+template/target/
 
 # Cache directories
 __cacheweb__/
