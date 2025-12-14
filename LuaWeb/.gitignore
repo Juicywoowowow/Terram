@@ -1,0 +1,27 @@
+# Build output
+build/
+
+# Cache directories
+__cacheweb__/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Compiled objects
+*.o
+*.a
+*.so
+*.dylib
+
+# CMake generated
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
