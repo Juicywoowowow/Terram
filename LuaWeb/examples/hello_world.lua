@@ -6,6 +6,35 @@ local luaweb = require("luaweb")
 -- Create a server on port 8080
 local app = luaweb.server(8080)
 
+-- ============================================================
+-- MIDDLEWARE: Runs before every request
+-- ============================================================
+
+-- Logging middleware
+app:use(function(req, res, next)
+    local timestamp = os.date("%Y-%m-%d %H:%M:%S")
+    print(string.format("[%s] %s %s", timestamp, req.method, req.path))
+    next()  -- Continue to next middleware/handler
+end)
+
+-- CORS middleware (allow cross-origin requests)
+app:use(function(req, res, next)
+    res:header("Access-Control-Allow-Origin", "*")
+    res:header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+    next()
+end)
+
+-- ============================================================
+-- STATIC FILE SERVING
+-- ============================================================
+
+-- Serve files from ./public at /public URL path
+app:static("/public", "../examples/public")
+
+-- ============================================================
+-- WEB LUA EXECUTION
+-- ============================================================
+
 -- Enable web Lua execution (sandboxed!)
 app:enable_web_lua(true)
 

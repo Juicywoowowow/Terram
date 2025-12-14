@@ -9,6 +9,8 @@ A stupidly easy-to-use HTTP web server library for Lua, written in C++ with zero
 - 🔄 **URL Parameters** - Express.js style `:param` routing
 - 📦 **JSON Support** - Built-in JSON response helpers
 - 🔒 **Web Lua Execution** - Run Lua code from the browser (sandboxed!)
+- 📁 **Static File Serving** - Serve HTML, CSS, JS, images
+- 🔗 **Middleware System** - Add logging, CORS, auth, etc.
 - 🛠️ **CMake Build** - Modern, cross-platform build system
 
 ## Quick Start
@@ -125,6 +127,49 @@ res:text("plain text")    -- Send plain text
 res:json('{"key":"val"}') -- Send JSON (sets Content-Type)
 ```
 
+#### Middleware
+
+Middleware runs before every request. Call `next()` to continue to the next middleware/handler.
+
+```lua
+-- Logging middleware
+app:use(function(req, res, next)
+    print(req.method .. " " .. req.path)
+    next()  -- Continue to next middleware or route
+end)
+
+-- CORS middleware
+app:use(function(req, res, next)
+    res:header("Access-Control-Allow-Origin", "*")
+    next()
+end)
+
+-- Auth middleware (blocks request if no token)
+app:use(function(req, res, next)
+    if not req.headers["Authorization"] then
+        res:status(401):send("Unauthorized")
+        return  -- Don't call next() to stop chain
+    end
+    next()
+end)
+```
+
+#### Static File Serving
+
+Serve files from a directory:
+
+```lua
+-- Serve files from ./public at /static URL path
+app:static("/static", "./public")
+
+-- Now these URLs work:
+-- /static/index.html -> ./public/index.html
+-- /static/css/style.css -> ./public/css/style.css
+-- /static/ -> ./public/index.html (auto-serves index.html)
+```
+
+Supported MIME types: HTML, CSS, JS, JSON, PNG, JPG, GIF, SVG, WOFF2, PDF, and more.
+
 #### Starting the Server
 
 ```lua
@@ -187,11 +232,12 @@ LuaWeb/
 
 ## Future Plans
 
-- [ ] Static file serving
+- [x] ~~Static file serving~~ ✅
+- [x] ~~Middleware system~~ ✅
 - [ ] WebSocket support
-- [ ] Middleware system
 - [ ] HTTPS/TLS support
 - [ ] Template engine
+- [ ] JSON body parsing
 
 ## License
 

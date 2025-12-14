@@ -260,6 +260,61 @@ int LuaServer::lua_server_enable_web_lua(lua_State* L) {
     return 1;
 }
 
+// Middleware registration
+static int lua_server_use(lua_State* L) {
+    Server* server = LuaServer::check_server(L, 1);
+    luaL_checktype(L, 2, LUA_TFUNCTION);
+    
+    // Store the function reference
+    lua_pushvalue(L, 2);
+    int callback_ref = luaL_ref(L, LUA_REGISTRYINDEX);
+    
+    server->use([L, callback_ref](Request& req, Response& res, std::function<void()> next) {
+        // Get the callback function
+        lua_rawgeti(L, LUA_REGISTRYINDEX, callback_ref);
+        
+        // Push request table
+        LuaServer::push_request(L, req);
+        
+        // Push response userdata
+        LuaServer::setup_response(L, res);
+        
+        // Create next() function
+        // We need to store 'next' and call it when the Lua function calls next()
+        // For simplicity, we'll use an upvalue
+        lua_pushlightuserdata(L, reinterpret_cast<void*>(&next));
+        lua_pushcclosure(L, [](lua_State* L) -> int {
+            auto* next_ptr = reinterpret_cast<std::function<void()>*>(lua_touserdata(L, lua_upvalueindex(1)));
+            if (next_ptr && *next_ptr) {
+                (*next_ptr)();
+            }
+            return 0;
+        }, 1);
+        
+        // Call the function with (req, res, next)
+        if (lua_pcall(L, 3, 0, 0) != LUA_OK) {
+            std::cerr << "[LuaWeb] Middleware error: " << lua_tostring(L, -1) << std::endl;
+            lua_pop(L, 1);
+            res.status(500).text("Internal Server Error");
+        }
+    });
+    
+    lua_pushvalue(L, 1);  // Return server for chaining
+    return 1;
+}
+
+// Static file serving
+static int lua_server_static(lua_State* L) {
+    Server* server = LuaServer::check_server(L, 1);
+    const char* url_prefix = luaL_checkstring(L, 2);
+    const char* directory = luaL_checkstring(L, 3);
+    
+    server->serve_static(url_prefix, directory);
+    
+    lua_pushvalue(L, 1);  // Return server for chaining
+    return 1;
+}
+
 int LuaServer::luaopen_luaweb(lua_State* L) {
     // Create Response metatable
     luaL_newmetatable(L, RESPONSE_MT);
@@ -298,6 +353,10 @@ int LuaServer::luaopen_luaweb(lua_State* L) {
     lua_setfield(L, -2, "stop");
     lua_pushcfunction(L, lua_server_enable_web_lua);
     lua_setfield(L, -2, "enable_web_lua");
+    lua_pushcfunction(L, lua_server_use);
+    lua_setfield(L, -2, "use");
+    lua_pushcfunction(L, lua_server_static);
+    lua_setfield(L, -2, "static");
     lua_pushcfunction(L, lua_server_gc);
     lua_setfield(L, -2, "__gc");
     

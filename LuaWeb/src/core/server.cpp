@@ -55,6 +55,21 @@ void Server::del(const std::string& path, RouteHandler handler) {
     route("DELETE", path, handler);
 }
 
+void Server::use(MiddlewareHandler handler) {
+    middlewares_.push_back(handler);
+}
+
+void Server::serve_static(const std::string& url_prefix, const std::string& directory) {
+    StaticMount mount;
+    mount.url_prefix = url_prefix;
+    // Ensure directory doesn't have trailing slash
+    mount.directory = directory;
+    if (!mount.directory.empty() && mount.directory.back() == '/') {
+        mount.directory.pop_back();
+    }
+    static_mounts_.push_back(mount);
+}
+
 void Server::enable_web_lua(bool enabled) {
     web_lua_enabled_ = enabled;
     
@@ -248,24 +263,151 @@ void Server::handle_client(int client_fd, const std::string& client_ip) {
 }
 
 void Server::dispatch_request(Request& req, Response& res) {
-    for (const auto& route : routes_) {
-        if (route.method != req.method) {
-            continue;
+    // Run middleware chain, then handle request
+    run_middleware_chain(req, res, 0, [this, &req, &res]() {
+        // Check if response was already sent by middleware
+        if (res.is_sent()) {
+            return;
         }
         
-        if (match_route(route, req.path, req.params)) {
-            try {
-                route.handler(req, res);
-                return;
-            } catch (const std::exception& e) {
-                res.status(500).text(std::string("Internal Server Error: ") + e.what());
-                return;
+        // Try static file serving first (for GET requests)
+        if (req.method == "GET" && try_serve_static(req, res)) {
+            return;
+        }
+        
+        // Try matching routes
+        for (const auto& route : routes_) {
+            if (route.method != req.method) {
+                continue;
+            }
+            
+            if (match_route(route, req.path, req.params)) {
+                try {
+                    route.handler(req, res);
+                    return;
+                } catch (const std::exception& e) {
+                    res.status(500).text(std::string("Internal Server Error: ") + e.what());
+                    return;
+                }
+            }
+        }
+        
+        // No route matched
+        res.status(404).text("Not Found");
+    });
+}
+
+void Server::run_middleware_chain(Request& req, Response& res, size_t index, std::function<void()> final_handler) {
+    if (index >= middlewares_.size()) {
+        // All middleware executed, run final handler
+        final_handler();
+        return;
+    }
+    
+    // Check if response already sent
+    if (res.is_sent()) {
+        return;
+    }
+    
+    // Run current middleware with next() callback
+    middlewares_[index](req, res, [this, &req, &res, index, final_handler]() {
+        run_middleware_chain(req, res, index + 1, final_handler);
+    });
+}
+
+bool Server::try_serve_static(Request& req, Response& res) {
+    for (const auto& mount : static_mounts_) {
+        // Check if path starts with the URL prefix
+        if (req.path.find(mount.url_prefix) == 0) {
+            // Get relative path after the prefix
+            std::string relative_path = req.path.substr(mount.url_prefix.length());
+            if (relative_path.empty() || relative_path == "/") {
+                relative_path = "/index.html";  // Default to index.html
+            }
+            
+            // Security: prevent directory traversal
+            if (relative_path.find("..") != std::string::npos) {
+                res.status(403).text("Forbidden");
+                return true;
+            }
+            
+            // Build full filesystem path
+            std::filesystem::path file_path = mount.directory + relative_path;
+            
+            // Check if file exists and is a regular file
+            if (std::filesystem::exists(file_path) && std::filesystem::is_regular_file(file_path)) {
+                // Read file content
+                std::ifstream file(file_path, std::ios::binary);
+                if (file) {
+                    std::stringstream buffer;
+                    buffer << file.rdbuf();
+                    
+                    // Set content type based on extension
+                    std::string mime_type = get_mime_type(file_path.string());
+                    res.header("Content-Type", mime_type);
+                    res.body(buffer.str());
+                    res.mark_sent();
+                    return true;
+                }
             }
         }
     }
+    return false;
+}
+
+std::string Server::get_mime_type(const std::string& path) {
+    // Get file extension
+    size_t dot_pos = path.rfind('.');
+    if (dot_pos == std::string::npos) {
+        return "application/octet-stream";
+    }
     
-    // No route matched
-    res.status(404).text("Not Found");
+    std::string ext = path.substr(dot_pos);
+    
+    // Convert to lowercase
+    for (char& c : ext) {
+        c = std::tolower(c);
+    }
+    
+    // Common MIME types
+    static const std::unordered_map<std::string, std::string> mime_types = {
+        {".html", "text/html; charset=utf-8"},
+        {".htm", "text/html; charset=utf-8"},
+        {".css", "text/css; charset=utf-8"},
+        {".js", "application/javascript; charset=utf-8"},
+        {".json", "application/json; charset=utf-8"},
+        {".xml", "application/xml; charset=utf-8"},
+        {".txt", "text/plain; charset=utf-8"},
+        {".md", "text/markdown; charset=utf-8"},
+        
+        // Images
+        {".png", "image/png"},
+        {".jpg", "image/jpeg"},
+        {".jpeg", "image/jpeg"},
+        {".gif", "image/gif"},
+        {".svg", "image/svg+xml"},
+        {".ico", "image/x-icon"},
+        {".webp", "image/webp"},
+        
+        // Fonts
+        {".woff", "font/woff"},
+        {".woff2", "font/woff2"},
+        {".ttf", "font/ttf"},
+        {".otf", "font/otf"},
+        {".eot", "application/vnd.ms-fontobject"},
+        
+        // Other
+        {".pdf", "application/pdf"},
+        {".zip", "application/zip"},
+        {".wasm", "application/wasm"},
+    };
+    
+    auto it = mime_types.find(ext);
+    if (it != mime_types.end()) {
+        return it->second;
+    }
+    
+    return "application/octet-stream";
 }
 
 void Server::handle_web_lua(Request& req, Response& res) {
