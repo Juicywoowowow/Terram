@@ -1,0 +1,30 @@
+@-- Base layout partial - header and navigation
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@{page_title | default:"SpyWeb"} | @{site.title}</title>
+    <meta name="description" content="@{site.tagline}">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="logo">
+                <span class="logo-icon">🕵️</span>
+                <span class="logo-text">@{site.title}</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/" class="@if current_page == "home"active@end">Home</a></li>
+                <li><a href="/blog" class="@if current_page == "blog"active@end">Blog</a></li>
+                <li><a href="/projects" class="@if current_page == "projects"active@end">Projects</a></li>
+                <li><a href="/stats" class="@if current_page == "stats"active@end">Stats</a></li>
+                <li><a href="/about" class="@if current_page == "about"active@end">About</a></li>
+            </ul>
+            <div class="visit-badge">
+                Visit #@{visits}
+            </div>
+        </div>
+    </nav>

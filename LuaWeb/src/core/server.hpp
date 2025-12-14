@@ -44,7 +44,7 @@ struct StaticMount {
  */
 class Server {
 public:
-    explicit Server(int port = 8080);
+    explicit Server(int port = 8080, const std::string& server_id = "");
     ~Server();
 
     // Route registration

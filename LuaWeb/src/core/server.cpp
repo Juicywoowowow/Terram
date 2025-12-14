@@ -32,12 +32,12 @@ static std::string generate_server_id() {
     return result;
 }
 
-Server::Server(int port) 
+Server::Server(int port, const std::string& explicit_server_id) 
     : port_(port)
     , server_fd_(-1)
     , running_(false)
     , web_lua_enabled_(false)
-    , server_id_(generate_server_id())
+    , server_id_(explicit_server_id.empty() ? generate_server_id() : explicit_server_id)
     , db_bridge_(std::make_unique<DatabaseBridge>(server_id_)) {
     // Ignore SIGPIPE to prevent crashes on broken connections
     signal(SIGPIPE, SIG_IGN);

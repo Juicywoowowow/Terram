@@ -92,7 +92,186 @@ async function handleRequest(req, res) {
     const pathname = url.pathname;
 
     try {
-        // Health check
+        // Helper to get all DB files
+        const getDbFiles = () => {
+            try {
+                return fs.readdirSync(SERVER_DB_DIR).filter(f => f.endsWith('.db'));
+            } catch (e) { return []; }
+        };
+
+        // SQL Console UI
+        if (pathname === '/console' && req.method === 'GET') {
+            const dbName = url.searchParams.get('db');
+            if (!dbName) return sendJson(res, { error: 'No db specified' }, 400);
+
+            const html = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>SQL Console: ${dbName}</title>
+                <style>
+                    body { font-family: monospace; background: #1a1a2e; color: #eee; padding: 20px; display: flex; flex-direction: column; height: 90vh; }
+                    h1 { margin: 0 0 10px 0; color: #00d9ff; }
+                    #editor { flex: 1; background: #16213e; color: #fff; border: 1px solid #30475e; padding: 10px; font-size: 16px; border-radius: 4px; resize: none; margin-bottom: 10px; }
+                    #results { flex: 1; background: #0f1524; overflow: auto; padding: 10px; border: 1px solid #30475e; border-radius: 4px; white-space: pre-wrap; }
+                    .controls { margin-bottom: 10px; display: flex; gap: 10px; }
+                    button { background: #e94560; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+                    button:hover { background: #ff6b6b; }
+                    .back { background: #30475e; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; color: white; padding: 0 20px; border-radius: 4px; }
+                </style>
+            </head>
+            <body>
+                <h1>> ${dbName}</h1>
+                <div class="controls">
+                    <a href="/" class="back">← Back</a>
+                    <button onclick="runQuery()">▶ Run SQL</button>
+                    <button onclick="clearOutput()" style="background: #444;">Clear</button>
+                </div>
+                <textarea id="editor" placeholder="SELECT * FROM ...">SELECT * FROM sqlite_master WHERE type='table';</textarea>
+                <div id="results">// Results will appear here...</div>
+
+                <script>
+                    let dbId = null;
+
+                    async function ensureOpen() {
+                        if (dbId) return dbId;
+                        try {
+                            const res = await fetch('/open', {
+                                method: 'POST', body: JSON.stringify({ path: '${dbName}' })
+                            });
+                            const data = await res.json();
+                            if (data.ok) {
+                                dbId = data.id;
+                                return dbId;
+                            }
+                            throw new Error(data.error);
+                        } catch (e) {
+                            document.getElementById('results').textContent = 'Error opening DB: ' + e.message;
+                            return null;
+                        }
+                    }
+
+                    async function runQuery() {
+                        const sql = document.getElementById('editor').value;
+                        const output = document.getElementById('results');
+                        output.textContent = 'Running...';
+                        
+                        const id = await ensureOpen();
+                        if (!id) return;
+
+                        const isSelect = sql.trim().toLowerCase().startsWith('select');
+                        const endpoint = isSelect ? '/query' : '/exec';
+
+                        try {
+                            const res = await fetch(endpoint, {
+                                method: 'POST', body: JSON.stringify({ id, sql })
+                            });
+                            const data = await res.json();
+                            
+                            if (data.ok) {
+                                output.textContent = JSON.stringify(data.rows || data, null, 2);
+                            } else {
+                                output.style.color = '#ff6b6b';
+                                output.textContent = 'Error: ' + data.error;
+                            }
+                        } catch (e) {
+                            output.textContent = 'Network Error: ' + e.message;
+                        }
+                    }
+                    
+                    function clearOutput() {
+                        document.getElementById('results').textContent = '';
+                        document.getElementById('results').style.color = '#eee';
+                    }
+                </script>
+            </body>
+            </html>
+            `;
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(html);
+            return;
+        }
+
+        // Dashboard UI
+        if (pathname === '/' && req.method === 'GET') {
+            const files = getDbFiles();
+
+            const dbList = files.map(filename => {
+                // Check if currently open
+                const openEntry = Array.from(databases.entries()).find(([, info]) => info.path.endsWith(filename));
+                const isOpen = !!openEntry;
+                const id = openEntry ? openEntry[0] : '-';
+
+                return `
+                <div class="card">
+                    <div class="db-header">
+                        <span class="db-id">${filename}</span>
+                        <span class="db-status" style="background: ${isOpen ? '#2ecc71' : '#95a5a6'}">
+                            ${isOpen ? 'Active' : 'On Disk'}
+                        </span>
+                    </div>
+                    <div class="db-path">ID: ${id}</div>
+                    <div class="controls" style="margin-top: 10px;">
+                        <a href="/console?db=${filename}" style="background: #00d9ff; color: #000; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 0.9em;">
+                            Open Console
+                        </a>
+                    </div>
+                </div>`;
+            }).join('');
+
+            const html = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>LuaWeb DB Bridge: ${SERVER_ID}</title>
+                <style>
+                    body { font-family: system-ui, sans-serif; background: #1a1a2e; color: #eee; padding: 20px; max-width: 1000px; margin: 0 auto; }
+                    h1 { color: #e94560; border-bottom: 2px solid #16213e; padding-bottom: 10px; }
+                    .stats { display: flex; gap: 20px; margin-bottom: 30px; }
+                    .stat-box { background: #16213e; padding: 15px; border-radius: 8px; flex: 1; border-left: 4px solid #00d9ff; }
+                    .stat-val { font-size: 24px; font-weight: bold; }
+                    .stat-label { color: #8892b0; font-size: 14px; }
+                    .card { background: #16213e; padding: 20px; border-radius: 8px; margin-bottom: 15px; }
+                    .db-header { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: center; }
+                    .db-id { font-weight: bold; color: #00d9ff; font-size: 1.2em; }
+                    .db-status { color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
+                    .db-path { font-family: monospace; color: #a8b2d1; font-size: 0.9em; }
+                    .refresh { position: fixed; bottom: 20px; right: 20px; background: #e94560; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+                    .refresh:hover { background: #ff6b6b; }
+                </style>
+            </head>
+            <body>
+                <h1>Database Bridge Monitor</h1>
+                
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-val">${SERVER_ID}</div>
+                        <div class="stat-label">Server ID</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-val">${PORT}</div>
+                        <div class="stat-label">Bridge Port</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-val">${databases.size}</div>
+                        <div class="stat-label">Memory Connections</div>
+                    </div>
+                </div>
+
+                <h2>Database Files</h2>
+                ${dbList || '<p style="color: #666; font-style: italic;">No database files found in storage directory.</p>'}
+
+                <button class="refresh" onclick="window.location.reload()">Refresh Monitor</button>
+            </body>
+            </html>
+            `;
+
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(html);
+            return;
+        }
+
+        // Health check logic (legacy/internal)
         if (pathname === '/health' && req.method === 'GET') {
             return sendJson(res, {
                 ok: true,

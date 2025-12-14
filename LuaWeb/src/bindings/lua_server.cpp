@@ -397,10 +397,11 @@ void LuaServer::setup_response(lua_State* L, Response& res) {
 
 int LuaServer::lua_create_server(lua_State* L) {
     int port = luaL_optinteger(L, 1, 8080);
+    const char* server_id = luaL_optstring(L, 2, "");
     
     // Create userdata
     Server** pserver = static_cast<Server**>(lua_newuserdata(L, sizeof(Server*)));
-    *pserver = new Server(port);
+    *pserver = new Server(port, server_id);
     
     luaL_getmetatable(L, SERVER_MT);
     lua_setmetatable(L, -2);

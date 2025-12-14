@@ -1,0 +1,79 @@
+@-- Projects Page Template
+@-- Demonstrates: status comparisons, loop variables
+
+@include "_header.lwt"
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>🚀 Projects</h1>
+                <p>Things I've built, am building, or planning to build</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                @-- Status legend
+                <div class="status-legend">
+                    <span class="status-item status-active">🟢 Active</span>
+                    <span class="status-item status-wip">🟡 Work in Progress</span>
+                    <span class="status-item status-completed">🔵 Completed</span>
+                </div>
+
+                <div class="projects-grid">
+                    @for project in projects
+                        <div class="project-card @if _loop.index == 0 first-card@end">
+                            <div class="project-status-indicator 
+                                @if project.status == "active"status-active
+                                @else
+                                    @if project.status == "wip"status-wip
+                                    @else status-completed
+                                    @end
+                                @end">
+                                @if project.status == "active"🟢
+                                @else
+                                    @if project.status == "wip"🟡
+                                    @else 🔵
+                                    @end
+                                @end
+                            </div>
+                            
+                            <h3 class="project-name">@{project.name}</h3>
+                            <p class="project-desc">@{project.description}</p>
+                            
+                            <div class="project-meta">
+                                <span class="project-language">💻 @{project.language}</span>
+                                <span class="project-stars">⭐ @{project.stars}</span>
+                            </div>
+
+                            @-- Show different CTAs based on status
+                            @if project.status == "active"
+                                <a href="@{project.url}" class="btn btn-primary btn-small">View Project</a>
+                            @else
+                                @if project.status == "wip"
+                                    <span class="wip-badge">Coming Soon</span>
+                                @else
+                                    <a href="@{project.url}" class="btn btn-secondary btn-small">View Archive</a>
+                                @end
+                            @end
+
+                            @-- Popularity indicator based on stars
+                            @if project.stars >= 100
+                                <div class="popularity-badge">🔥 Popular!</div>
+                            @else
+                                @if project.stars >= 50
+                                    <div class="popularity-badge">📈 Rising</div>
+                                @end
+                            @end
+                        </div>
+                    @end
+                </div>
+
+                <div class="projects-summary">
+                    <p>Total projects: @{projects | length}</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+@include "_footer.lwt"
